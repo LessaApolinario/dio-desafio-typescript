@@ -45,4 +45,6 @@ pessoas.push(pessoa2)
 pessoas.push(pessoa3)
 pessoas.push(pessoa4)
 
+pessoas.forEach(pessoa => console.log(pessoa))
+
 export { pessoas }
