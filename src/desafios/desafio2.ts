@@ -3,9 +3,9 @@
 // eslint-disable-next-line
 enum IProfissao {
   // eslint-disable-next-line
-  Atriz,
+  Atriz = 'Atriz',
   // eslint-disable-next-line
-  Padeiro
+  Padeiro = 'Padeiro'
 }
 
 interface IPessoa {
