@@ -5,10 +5,8 @@ interface Employee {
   name: string
 }
 
+// eslint-disable-next-line
 const employee: Employee = {
-  code: 11,
-  name: 'Doe'
+  code: 10,
+  name: 'John'
 }
-
-employee.code = 10
-employee.name = 'John'
