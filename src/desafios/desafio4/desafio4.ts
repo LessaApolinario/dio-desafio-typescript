@@ -40,7 +40,7 @@ interface RequestOptions {
 // eslint-disable-next-line
 const makeRequest = (url: string, bodyInit?: RequestOptions) => {
   if (!bodyInit) {
-    return fetch(baseUrl)
+    return fetch(url)
   }
 
   const body = bodyInit.body
