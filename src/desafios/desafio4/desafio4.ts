@@ -32,6 +32,30 @@ const searchContainer = document.getElementById('search-container') as HTMLFormE
 
 const baseUrl = `https://api.themoviedb.org/3/movie/5?api_key=${apiKey}`
 
+interface RequestOptions {
+  method: string
+  body: Record<string, string>
+}
+
+// eslint-disable-next-line
+const makeRequest = async (url: string, bodyInit?: RequestOptions) => {
+  if (!bodyInit) {
+    return await fetch(baseUrl)
+  }
+
+  const body = bodyInit.body
+
+  return await fetch(url, body)
+}
+
+const requestOptions: RequestOptions = {
+  method: 'POST',
+  body: {
+    username,
+    password
+  }
+}
+console.log(makeRequest(baseUrl, requestOptions))
 // var apiKey = '3f301be7381a03ad8d352314dcc3ec1d'
 // let apiKey
 // let requestToken
