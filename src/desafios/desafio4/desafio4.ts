@@ -12,15 +12,16 @@
 const apiKeyInput = document.getElementById('api-key') as HTMLInputElement
 let apiKey: string
 
+const loginContainer = document.querySelector('form') as HTMLFormElement
 const usernameInput = document.getElementById('login') as HTMLInputElement
-let username: string
+const username: string
 
 const passwordinput = document.getElementById('senha') as HTMLInputElement
-let password: string
+const password: string
 
 const loginButton = document.getElementById('login-button') as HTMLButtonElement
 const searchButton = document.getElementById('search-button') as HTMLButtonElement
-const searchContainer = document.getElementById('search-container') as HTMLDivElement
+const searchContainer = document.getElementById('search-container') as HTMLFormElement
 
 const baseUrl = `https://api.themoviedb.org/3/movie/5?api_key=${apiKey}`
 
