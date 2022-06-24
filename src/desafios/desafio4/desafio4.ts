@@ -11,10 +11,13 @@
 // É necessário fazer um cadastro no https://www.themoviedb.org/ e seguir a documentação do site para entender como gera uma API key https://developers.themoviedb.org/3/getting-started/introduction
 const apiKeyInput = document.getElementById('api-key') as HTMLInputElement
 let apiKey: string
+
 const usernameInput = document.getElementById('login') as HTMLInputElement
 let username: string
+
 const passwordinput = document.getElementById('senha') as HTMLInputElement
 let password: string
+
 const loginButton = document.getElementById('login-button') as HTMLButtonElement
 const searchButton = document.getElementById('search-button') as HTMLButtonElement
 const searchContainer = document.getElementById('search-container') as HTMLDivElement
