@@ -8,16 +8,41 @@
 </head>
 <body>
   <div style="display: flex;">
-    <div style="display: flex; width: 300px; height: 100px; justify-content: space-between; flex-direction: column;">
-        <input id="login" placeholder="Login" onchange="preencherLogin(event)">
-        <input id="senha" placeholder="Senha" type="password" onchange="preencherSenha(event)">
-        <input id="api-key" placeholder="Api Key" onchange="preencherApi()">
+    <form action="" style="display: flex; width: 300px; height: 100px; justify-content: space-between; flex-direction: column;">
+        <input
+          type="text"
+          id="login"
+          placeholder="Login"
+          onchange="preencherLogin(event)"
+          name="username"
+        />
+        <input
+          type="password"
+          id="senha"
+          placeholder="Senha"
+          onchange="preencherSenha(event)"
+          name="password"
+        />
+        <input
+          type="text"
+          id="api-key"
+          placeholder="Api Key"
+          onchange="preencherApi()"
+          name="api_key"
+        />
+
         <button id="login-button" disabled>Login</button>
-    </div>
-    <div id="search-container" style="margin-left: 20px">
-        <input id="search" placeholder="Escreva...">
+    </form>
+    <form id="search-container" style="margin-left: 20px">
+        <input
+          type="text"
+          id="search"
+          placeholder="Escreva..."
+          name="search"
+        />
+        
         <button id="search-button">Pesquisar Filme</button>
-    </div>
+    </form>
   </div>
 </body>
 </html>
