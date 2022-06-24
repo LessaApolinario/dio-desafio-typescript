@@ -12,7 +12,7 @@
 // eslint-disable-next-line
 const apiKeyInput = document.getElementById('api-key') as HTMLInputElement
 // eslint-disable-next-line
-let apiKey: string = ''
+let apiKey: string = '2b0a1b4406bc620935d25b2885489c18'
 // eslint-disable-next-line
 const loginContainer = document.querySelector('form') as HTMLFormElement
 // eslint-disable-next-line
@@ -38,14 +38,14 @@ interface RequestOptions {
 }
 
 // eslint-disable-next-line
-const makeRequest = async (url: string, bodyInit?: RequestOptions) => {
+const makeRequest = (url: string, bodyInit?: RequestOptions) => {
   if (!bodyInit) {
-    return await fetch(baseUrl)
+    return fetch(baseUrl)
   }
 
   const body = bodyInit.body
 
-  return await fetch(url, body)
+  return fetch(url, body)
 }
 
 const requestOptions: RequestOptions = {
@@ -55,7 +55,18 @@ const requestOptions: RequestOptions = {
     password
   }
 }
-console.log(makeRequest(baseUrl, requestOptions))
+
+const getDataAsync = async (url: string, requestOptions: RequestOptions) => {
+  try {
+    const response = await makeRequest(url, requestOptions)
+    const body = await response.json()
+    console.log(body)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+getDataAsync(baseUrl, requestOptions)
 // var apiKey = '3f301be7381a03ad8d352314dcc3ec1d'
 // let apiKey
 // let requestToken
