@@ -9,18 +9,23 @@
 // Todas as requisições necessárias para as atividades acima já estão prontas, mas a implementação delas ficou pela metade (não vou dar tudo de graça).
 // Atenção para o listener do botão login-button que devolve o sessionID do usuário
 // É necessário fazer um cadastro no https://www.themoviedb.org/ e seguir a documentação do site para entender como gera uma API key https://developers.themoviedb.org/3/getting-started/introduction
+// eslint-disable-next-line
 const apiKeyInput = document.getElementById('api-key') as HTMLInputElement
-let apiKey: string
-
+const apiKey: string = ''
+// eslint-disable-next-line
 const loginContainer = document.querySelector('form') as HTMLFormElement
+// eslint-disable-next-line
 const usernameInput = document.getElementById('login') as HTMLInputElement
-const username: string
-
+const username: string = ''
+// eslint-disable-next-line
 const passwordinput = document.getElementById('senha') as HTMLInputElement
-const password: string
-
+// eslint-disable-next-line
+const password: string = ''
+// eslint-disable-next-line
 const loginButton = document.getElementById('login-button') as HTMLButtonElement
+// eslint-disable-next-line
 const searchButton = document.getElementById('search-button') as HTMLButtonElement
+// eslint-disable-next-line
 const searchContainer = document.getElementById('search-container') as HTMLFormElement
 
 const baseUrl = `https://api.themoviedb.org/3/movie/5?api_key=${apiKey}`
@@ -30,6 +35,12 @@ console.log(request)
 
 const resolvePromise = async () => await Promise.resolve(request)
 resolvePromise()
+
+// eslint-disable-next-line
+interface InitialRequestSettings {
+  method: Uppercase<string>
+  body?: FormData | Blob | URLSearchParams | String | ReadableStream
+}
 
 // var apiKey = '3f301be7381a03ad8d352314dcc3ec1d'
 // let apiKey
