@@ -31,6 +31,7 @@ const searchButton = document.getElementById('search-button') as HTMLButtonEleme
 const searchContainer = document.getElementById('search-container') as HTMLFormElement
 
 const baseUrl = `https://api.themoviedb.org/3/movie/5?api_key=${apiKey}`
+let requestToken: string
 
 interface RequestOptions {
   method: string
@@ -44,7 +45,7 @@ interface RequestTokenData {
 }
 
 // eslint-disable-next-line
-const makeRequest = <T>(url: string, bodyInit: RequestOptions) => {
+const makeRequest = (url: string, bodyInit: RequestOptions) => {
   const method = bodyInit.method
   const body = bodyInit.body
 
@@ -64,7 +65,7 @@ const makeRequest = <T>(url: string, bodyInit: RequestOptions) => {
 // }
 
 // eslint-disable-next-line
-const getDataAsync = async <T>(url: string, requestOptions: RequestOptions) => {
+const getDataAsync = async <T>(url: string, requestOptions: RequestOptions): Promise<T | undefined> => {
   try {
     const response = await makeRequest(url, requestOptions)
     const json = await response.json()
@@ -76,7 +77,13 @@ const getDataAsync = async <T>(url: string, requestOptions: RequestOptions) => {
 
 // console.log(getDataAsync(baseUrl, requestOptions))
 
-// criarRequestToken()
+const criarRequestToken = async () => {
+  const response = await getDataAsync<RequestTokenData>(`https://api.themoviedb.org/3/authentication/token/new?api_key=${apiKey}`, { method: 'GET' })
+  const objectAsString = JSON.stringify(response)
+  const { request_token }: RequestTokenData = JSON.parse(objectAsString)
+  requestToken = request_token
+}
+
 // var apiKey = '3f301be7381a03ad8d352314dcc3ec1d'
 // let apiKey
 // let requestToken
