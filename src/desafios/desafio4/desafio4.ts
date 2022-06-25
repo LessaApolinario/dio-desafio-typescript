@@ -12,7 +12,7 @@
 // eslint-disable-next-line
 const apiKeyInput = document.getElementById('api-key') as HTMLInputElement
 // eslint-disable-next-line
-let apiKey: string = ''
+let apiKey: string = 'someapikey'
 // eslint-disable-next-line
 const loginContainer = document.querySelector('form') as HTMLFormElement
 // eslint-disable-next-line
@@ -69,14 +69,14 @@ const getDataAsync = async (url: string, requestOptions: RequestOptions) => {
 }
 
 // getDataAsync(baseUrl, requestOptions)
-let requestToken
+// let requestToken
 
-const criarRequestToken = async () => {
-  const result = getDataAsync(`https://api.themoviedb.org/3/authentication/token/new?api_key=${apiKey}`, { method: 'GET' })
-  requestToken = await result.json()
-}
+// const criarRequestToken = async () => {
+//   const result = await getDataAsync(`https://api.themoviedb.org/3/authentication/token/new?api_key=${apiKey}`, { method: 'GET' })
+//   requestToken = result
+// }
 
-criarRequestToken()
+// criarRequestToken()
 // var apiKey = '3f301be7381a03ad8d352314dcc3ec1d'
 // let apiKey
 // let requestToken
