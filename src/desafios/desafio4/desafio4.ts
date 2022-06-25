@@ -38,9 +38,9 @@ interface RequestOptions {
 }
 
 // eslint-disable-next-line
-const makeRequest = (url: string, bodyInit?: RequestOptions) => {
-  const body = bodyInit?.body
-  const method = bodyInit?.method
+const makeRequest = (url: string, bodyInit: RequestOptions) => {
+  const method = bodyInit.method
+  const body = bodyInit.body
 
   if (!body) {
     return fetch(url, { method })
@@ -69,7 +69,14 @@ const getDataAsync = async (url: string, requestOptions: RequestOptions) => {
 }
 
 // getDataAsync(baseUrl, requestOptions)
+let requestToken
 
+const criarRequestToken = async () => {
+  const result = getDataAsync(`https://api.themoviedb.org/3/authentication/token/new?api_key=${apiKey}`, { method: 'GET' })
+  requestToken = await result.json()
+}
+
+criarRequestToken()
 // var apiKey = '3f301be7381a03ad8d352314dcc3ec1d'
 // let apiKey
 // let requestToken
