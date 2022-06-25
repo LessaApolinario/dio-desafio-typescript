@@ -30,7 +30,7 @@ const searchButton = document.getElementById('search-button') as HTMLButtonEleme
 // eslint-disable-next-line
 const searchContainer = document.getElementById('search-container') as HTMLFormElement
 
-const baseUrl = `https://api.themoviedb.org/3/movie/5?api_key=${apiKey}`
+const baseUrl = 'https://api.themoviedb.org/3'
 let requestToken: string
 let sessionId: string
 
@@ -56,7 +56,7 @@ const api = async <T>(req: Request) => {
 const criarRequestToken = async () => {
   apiKey = apiKeyInput.value
 
-  const req = new Request(`https://api.themoviedb.org/3/authentication/token/new?api_key=${apiKey}`, {
+  const req = new Request(`${baseUrl}/authentication/token/new?api_key=${apiKey}`, {
     method: 'GET'
   })
 
@@ -72,7 +72,7 @@ const logar = async () => {
   formData.delete('api_key')
   formData.append('request_token', requestToken)
 
-  const req = new Request(`https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=${apiKey}`, {
+  const req = new Request(`${baseUrl}/authentication/token/validate_with_login?api_key=${apiKey}`, {
     method: 'POST',
     body: formData
   })
@@ -82,7 +82,7 @@ const logar = async () => {
 
 const criarSessao = async () => {
   apiKey = apiKeyInput.value
-  const req = new Request(`https://api.themoviedb.org/3/authentication/session/new?api_key=${apiKey}&request_token=${requestToken}`, {
+  const req = new Request(`${baseUrl}/authentication/session/new?api_key=${apiKey}&request_token=${requestToken}`, {
     method: 'POST'
   })
   const response = await api<SessionData>(req)
