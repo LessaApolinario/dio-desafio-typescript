@@ -39,23 +39,25 @@ interface RequestOptions {
 
 // eslint-disable-next-line
 const makeRequest = (url: string, bodyInit?: RequestOptions) => {
-  if (!bodyInit) {
-    return fetch(url)
-  }
+  const body = bodyInit?.body
+  const method = bodyInit?.method
 
-  const body = bodyInit.body
+  if (!body) {
+    return fetch(url, { method })
+  }
 
   return fetch(url, body)
 }
 
-const requestOptions: RequestOptions = {
-  method: 'POST',
-  body: {
-    username,
-    password
-  }
-}
+// const requestOptions: RequestOptions = {
+//   method: 'POST',
+//   body: {
+//     username,
+//     password
+//   }
+// }
 
+// eslint-disable-next-line
 const getDataAsync = async (url: string, requestOptions: RequestOptions) => {
   try {
     const response = await makeRequest(url, requestOptions)
@@ -66,7 +68,8 @@ const getDataAsync = async (url: string, requestOptions: RequestOptions) => {
   }
 }
 
-getDataAsync(baseUrl, requestOptions)
+// getDataAsync(baseUrl, requestOptions)
+
 // var apiKey = '3f301be7381a03ad8d352314dcc3ec1d'
 // let apiKey
 // let requestToken
