@@ -44,6 +44,11 @@ interface RequestTokenData {
   request_token: string
 }
 
+interface SessionData {
+  sucess: boolean
+  session_id: string
+}
+
 // eslint-disable-next-line
 const makeRequest = (url: string, bodyInit: RequestOptions) => {
   const method = bodyInit.method
