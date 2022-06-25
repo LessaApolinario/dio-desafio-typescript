@@ -12,17 +12,17 @@
 // eslint-disable-next-line
 const apiKeyInput = document.getElementById('api-key') as HTMLInputElement
 // eslint-disable-next-line
-let apiKey: string = ''
+let apiKey: string = apiKeyInput.value
 // eslint-disable-next-line
-const loginContainer = document.querySelector('form') as HTMLFormElement
+const loginContainer = document.querySelector('#login-container') as HTMLFormElement
 // eslint-disable-next-line
 const usernameInput = document.getElementById('login') as HTMLInputElement
 // eslint-disable-next-line
-let username: string = ''
+let username: string = usernameInput.value
 // eslint-disable-next-line
 const passwordinput = document.getElementById('senha') as HTMLInputElement
 // eslint-disable-next-line
-const password: string = ''
+const password: string = passwordinput.value
 // eslint-disable-next-line
 const loginButton = document.getElementById('login-button') as HTMLButtonElement
 // eslint-disable-next-line
@@ -35,8 +35,9 @@ let requestToken: string
 let sessionId: string
 
 interface RequestOptions {
-  method: string
-  body?: Record<string, string>
+  method?: string
+  headers?: Record<string, string>
+  body?: FormData
 }
 
 interface RequestTokenData {
@@ -51,23 +52,17 @@ interface SessionData {
 }
 
 // eslint-disable-next-line
-const makeRequest = (url: string, bodyInit: RequestOptions) => {
-  const method = bodyInit.method
-  const body = bodyInit.body
-
-  if (!body) {
-    return fetch(url, { method })
-  }
-
-  return fetch(url, body)
+const api = async (url: string, init?: RequestOptions) => {
+  const promise = init ? await fetch(url, init) : await fetch(url)
+  return promise
 }
 
 // eslint-disable-next-line
-const getDataAsync = async <T>(url: string, requestOptions: RequestOptions): Promise<T | undefined> => {
+const getDataAsync = async <T>(url: string, init?: RequestOptions): Promise<T | undefined> => {
   try {
-    const response = await makeRequest(url, requestOptions)
+    const response = init ? await api(url, init) : await api(url)
     const json = await response.json()
-    return json
+    return <T>json
   } catch (error) {
     console.log(error)
   }
@@ -82,32 +77,55 @@ const criarRequestToken = async () => {
 }
 
 const logar = async () => {
-  const response = await makeRequest(`https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=${apiKey}`, {
+  const formData = new FormData(loginContainer)
+  formData.delete('api_key')
+  formData.append('request_token', requestToken)
+
+  const response = await api(`https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=${apiKey}`, {
     method: 'POST',
-    body: {
-      username,
-      password,
-      request_token: requestToken
-    }
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    },
+    body: formData
   })
+
+  // console.log('formData: ')
+  // formData.forEach(item => {
+  //   console.log(item)
+  // })
+
+  // const text = await response.text()
+  // console.log('Texto: ', text)
 }
 
 const criarSessao = async () => {
-  const response = await getDataAsync<SessionData>(`https://api.themoviedb.org/3/authentication/session/new?api_key=${apiKey}&request_token=${requestToken}`, { method: 'GET' })
+  const response = await getDataAsync<SessionData>(`https://api.themoviedb.org/3/authentication/session/new?api_key=${apiKey}&request_token=${requestToken}`, {
+    method: 'GET'
+  })
   const objectAsString = JSON.stringify(response)
   const { session_id }: SessionData = JSON.parse(objectAsString)
   sessionId = session_id
 }
 
+loginContainer.addEventListener('submit', async (event) => {
+  event.preventDefault()
+  try {
+    await criarRequestToken()
+    await logar()
+    await criarSessao()
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 // loginButton.addEventListener('click', async (event) => {
-//   event.preventDefault()
-//   try {
-//     await criarRequestToken()
-//     await logar()
-//     console.log('tudo ok')
-//   } catch (error) {
-//     console.log(error)
-//   }
+// try {
+//   await criarRequestToken()
+//   await logar()
+//   await criarSessao()
+// } catch (error) {
+//   console.log(error)
+// }
 // })
 
 // var apiKey = '3f301be7381a03ad8d352314dcc3ec1d'
