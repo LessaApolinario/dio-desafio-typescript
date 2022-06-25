@@ -34,7 +34,7 @@ const baseUrl = `https://api.themoviedb.org/3/movie/5?api_key=${apiKey}`
 
 interface RequestOptions {
   method: string
-  body: Record<string, string>
+  body?: Record<string, string>
 }
 
 // eslint-disable-next-line
