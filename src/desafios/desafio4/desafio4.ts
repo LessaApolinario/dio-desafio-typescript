@@ -37,6 +37,12 @@ interface RequestOptions {
   body?: Record<string, string>
 }
 
+interface RequestTokenData {
+  sucess: boolean
+  expires_at: string
+  request_token: string
+}
+
 // eslint-disable-next-line
 const makeRequest = (url: string, bodyInit: RequestOptions) => {
   const method = bodyInit.method
@@ -68,11 +74,11 @@ const getDataAsync = async (url: string, requestOptions: RequestOptions) => {
   }
 }
 
-// getDataAsync(baseUrl, requestOptions)
+// console.log(getDataAsync(baseUrl, requestOptions))
 // let requestToken
 
 // const criarRequestToken = async () => {
-//   const result = await getDataAsync(`https://api.themoviedb.org/3/authentication/token/new?api_key=${apiKey}`, { method: 'GET' })
+//   const result = await makeRequest(`https://api.themoviedb.org/3/authentication/token/new?api_key=${apiKey}`, { method: 'GET' })
 //   requestToken = result
 // }
 
