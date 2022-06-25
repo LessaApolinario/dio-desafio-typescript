@@ -12,7 +12,7 @@
 // eslint-disable-next-line
 const apiKeyInput = document.getElementById('api-key') as HTMLInputElement
 // eslint-disable-next-line
-let apiKey: string = 'someapikey'
+let apiKey: string = ''
 // eslint-disable-next-line
 const loginContainer = document.querySelector('form') as HTMLFormElement
 // eslint-disable-next-line
@@ -56,14 +56,6 @@ const makeRequest = (url: string, bodyInit: RequestOptions) => {
   return fetch(url, body)
 }
 
-// const requestOptions: RequestOptions = {
-//   method: 'POST',
-//   body: {
-//     username,
-//     password
-//   }
-// }
-
 // eslint-disable-next-line
 const getDataAsync = async <T>(url: string, requestOptions: RequestOptions): Promise<T | undefined> => {
   try {
@@ -75,14 +67,35 @@ const getDataAsync = async <T>(url: string, requestOptions: RequestOptions): Pro
   }
 }
 
-// console.log(getDataAsync(baseUrl, requestOptions))
-
+// eslint-disable-next-line
 const criarRequestToken = async () => {
   const response = await getDataAsync<RequestTokenData>(`https://api.themoviedb.org/3/authentication/token/new?api_key=${apiKey}`, { method: 'GET' })
   const objectAsString = JSON.stringify(response)
   const { request_token }: RequestTokenData = JSON.parse(objectAsString)
   requestToken = request_token
 }
+
+const logar = async () => {
+  const response = await makeRequest(`https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=${apiKey}`, {
+    method: 'POST',
+    body: {
+      username,
+      password,
+      request_token: requestToken
+    }
+  })
+}
+
+// loginButton.addEventListener('click', async (event) => {
+//   event.preventDefault()
+//   try {
+//     await criarRequestToken()
+//     await logar()
+//     console.log('tudo ok')
+//   } catch (error) {
+//     console.log(error)
+//   }
+// })
 
 // var apiKey = '3f301be7381a03ad8d352314dcc3ec1d'
 // let apiKey
