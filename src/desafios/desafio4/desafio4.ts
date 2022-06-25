@@ -12,7 +12,7 @@
 // eslint-disable-next-line
 const apiKeyInput = document.getElementById('api-key') as HTMLInputElement
 // eslint-disable-next-line
-let apiKey: string = '2b0a1b4406bc620935d25b2885489c18'
+let apiKey: string = ''
 // eslint-disable-next-line
 const loginContainer = document.querySelector('form') as HTMLFormElement
 // eslint-disable-next-line
