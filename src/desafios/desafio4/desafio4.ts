@@ -44,7 +44,7 @@ interface RequestTokenData {
 }
 
 // eslint-disable-next-line
-const makeRequest = (url: string, bodyInit: RequestOptions) => {
+const makeRequest = <T>(url: string, bodyInit: RequestOptions) => {
   const method = bodyInit.method
   const body = bodyInit.body
 
@@ -64,23 +64,17 @@ const makeRequest = (url: string, bodyInit: RequestOptions) => {
 // }
 
 // eslint-disable-next-line
-const getDataAsync = async (url: string, requestOptions: RequestOptions) => {
+const getDataAsync = async <T>(url: string, requestOptions: RequestOptions) => {
   try {
     const response = await makeRequest(url, requestOptions)
-    const body = await response.json()
-    console.log(body)
+    const json = await response.json()
+    return json
   } catch (error) {
     console.log(error)
   }
 }
 
 // console.log(getDataAsync(baseUrl, requestOptions))
-// let requestToken
-
-// const criarRequestToken = async () => {
-//   const result = await makeRequest(`https://api.themoviedb.org/3/authentication/token/new?api_key=${apiKey}`, { method: 'GET' })
-//   requestToken = result
-// }
 
 // criarRequestToken()
 // var apiKey = '3f301be7381a03ad8d352314dcc3ec1d'
