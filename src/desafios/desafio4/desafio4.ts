@@ -12,7 +12,7 @@
 // eslint-disable-next-line
 const apiKeyInput = document.getElementById('api-key') as HTMLInputElement
 // eslint-disable-next-line
-let apiKey: string = apiKeyInput.value
+let apiKey: string
 // eslint-disable-next-line
 const loginContainer = document.querySelector('#login-container') as HTMLFormElement
 // eslint-disable-next-line
@@ -70,6 +70,7 @@ const getDataAsync = async <T>(url: string, init?: RequestOptions): Promise<T | 
 
 // eslint-disable-next-line
 const criarRequestToken = async () => {
+  apiKey = apiKeyInput.value
   const response = await getDataAsync<RequestTokenData>(`https://api.themoviedb.org/3/authentication/token/new?api_key=${apiKey}`, { method: 'GET' })
   const objectAsString = JSON.stringify(response)
   const { request_token }: RequestTokenData = JSON.parse(objectAsString)
@@ -77,6 +78,8 @@ const criarRequestToken = async () => {
 }
 
 const logar = async () => {
+  apiKey = apiKeyInput.value
+
   const formData = new FormData(loginContainer)
   formData.delete('api_key')
   formData.append('request_token', requestToken)
@@ -99,6 +102,7 @@ const logar = async () => {
 }
 
 const criarSessao = async () => {
+  apiKey = apiKeyInput.value
   const response = await getDataAsync<SessionData>(`https://api.themoviedb.org/3/authentication/session/new?api_key=${apiKey}&request_token=${requestToken}`, {
     method: 'GET'
   })
