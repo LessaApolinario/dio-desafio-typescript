@@ -34,12 +34,6 @@ const baseUrl = `https://api.themoviedb.org/3/movie/5?api_key=${apiKey}`
 let requestToken: string
 let sessionId: string
 
-interface RequestOptions {
-  method?: string
-  headers?: Record<string, string>
-  body?: FormData
-}
-
 interface RequestTokenData {
   sucess: boolean
   expires_at: string
@@ -52,28 +46,22 @@ interface SessionData {
 }
 
 // eslint-disable-next-line
-const api = async (url: string, init?: RequestOptions) => {
-  const promise = init ? await fetch(url, init) : await fetch(url)
-  return promise
-}
-
-// eslint-disable-next-line
-const getDataAsync = async <T>(url: string, init?: RequestOptions): Promise<T | undefined> => {
-  try {
-    const response = init ? await api(url, init) : await api(url)
-    const json = await response.json()
-    return <T>json
-  } catch (error) {
-    console.log(error)
-  }
+const api = async <T>(req: Request) => {
+  const res = await fetch(req)
+  const data = await res.json()
+  return <T>data
 }
 
 // eslint-disable-next-line
 const criarRequestToken = async () => {
   apiKey = apiKeyInput.value
-  const response = await getDataAsync<RequestTokenData>(`https://api.themoviedb.org/3/authentication/token/new?api_key=${apiKey}`, { method: 'GET' })
-  const objectAsString = JSON.stringify(response)
-  const { request_token }: RequestTokenData = JSON.parse(objectAsString)
+
+  const req = new Request(`https://api.themoviedb.org/3/authentication/token/new?api_key=${apiKey}`, {
+    method: 'GET'
+  })
+
+  const response = await api<RequestTokenData>(req)
+  const { request_token } = response
   requestToken = request_token
 }
 
@@ -84,30 +72,21 @@ const logar = async () => {
   formData.delete('api_key')
   formData.append('request_token', requestToken)
 
-  const response = await api(`https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=${apiKey}`, {
+  const req = new Request(`https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=${apiKey}`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8'
-    },
     body: formData
   })
 
-  // console.log('formData: ')
-  // formData.forEach(item => {
-  //   console.log(item)
-  // })
-
-  // const text = await response.text()
-  // console.log('Texto: ', text)
+  await api<RequestTokenData>(req)
 }
 
 const criarSessao = async () => {
   apiKey = apiKeyInput.value
-  const response = await getDataAsync<SessionData>(`https://api.themoviedb.org/3/authentication/session/new?api_key=${apiKey}&request_token=${requestToken}`, {
-    method: 'GET'
+  const req = new Request(`https://api.themoviedb.org/3/authentication/session/new?api_key=${apiKey}&request_token=${requestToken}`, {
+    method: 'POST'
   })
-  const objectAsString = JSON.stringify(response)
-  const { session_id }: SessionData = JSON.parse(objectAsString)
+  const response = await api<SessionData>(req)
+  const { session_id } = response
   sessionId = session_id
 }
 
