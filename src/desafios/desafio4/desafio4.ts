@@ -90,8 +90,9 @@ const criarSessao = async () => {
   sessionId = session_id
 }
 
-loginContainer.addEventListener('submit', async (event) => {
+loginButton.addEventListener('click', async (event) => {
   event.preventDefault()
+
   try {
     await criarRequestToken()
     await logar()
