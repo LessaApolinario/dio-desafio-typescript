@@ -32,6 +32,7 @@ const searchContainer = document.getElementById('search-container') as HTMLFormE
 
 const baseUrl = `https://api.themoviedb.org/3/movie/5?api_key=${apiKey}`
 let requestToken: string
+let sessionId: string
 
 interface RequestOptions {
   method: string
@@ -89,6 +90,13 @@ const logar = async () => {
       request_token: requestToken
     }
   })
+}
+
+const criarSessao = async () => {
+  const response = await getDataAsync<SessionData>(`https://api.themoviedb.org/3/authentication/session/new?api_key=${apiKey}&request_token=${requestToken}`, { method: 'GET' })
+  const objectAsString = JSON.stringify(response)
+  const { session_id }: SessionData = JSON.parse(objectAsString)
+  sessionId = session_id
 }
 
 // loginButton.addEventListener('click', async (event) => {
