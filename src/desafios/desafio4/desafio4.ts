@@ -127,6 +127,12 @@ const preencherApi = () => {
   validateLoginButton()
 }
 
+usernameInput.addEventListener('change', preencherLogin)
+
+passwordInput.addEventListener('change', preencherSenha)
+
+apiKeyInput.addEventListener('change', preencherApi)
+
 // loginButton.addEventListener('click', async (event) => {
 // try {
 //   await criarRequestToken()
