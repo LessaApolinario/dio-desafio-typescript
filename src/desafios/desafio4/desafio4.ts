@@ -104,6 +104,12 @@ loginButton.addEventListener('click', async (event) => {
 
 const validateLoginButton = () => {
   loginButton.disabled = Boolean(password && username && apiKey)
+
+  if (loginButton.disabled) {
+    loginButton.removeAttribute('disabled')
+  } else {
+    loginButton.setAttribute('disabled', 'true')
+  }
 }
 
 const preencherLogin = () => {
