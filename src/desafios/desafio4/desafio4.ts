@@ -32,6 +32,8 @@ const searchContainer = document.getElementById('search-container') as HTMLFormE
 // eslint-disable-next-line
 const searchInput = document.getElementById('search') as HTMLInputElement
 
+const addFilmeButton = document.querySelector('button[type="button"]') as HTMLButtonElement
+
 const baseUrl = 'https://api.themoviedb.org/3'
 let requestToken: string
 let sessionId: string
