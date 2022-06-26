@@ -203,7 +203,7 @@ const createMovie = (movie: Movie) => {
     <p>Lang: ${original_language}</p>
     <p>${overview}</p>
     <p>${popularity}</p>
-    <p>${release_date}</p>
+    <p>${formatDate(release_date)}</p>
   `
 
   if (adult) {
