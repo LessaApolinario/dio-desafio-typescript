@@ -136,7 +136,7 @@ passwordInput.addEventListener('change', preencherSenha)
 apiKeyInput.addEventListener('change', preencherApi)
 
 interface Movie {
-  adult: number
+  adult: boolean
   id: number
   original_language: string
   original_title: string
