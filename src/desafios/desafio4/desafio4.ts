@@ -239,13 +239,13 @@ searchButton.addEventListener('click', async (event) => {
   searchContainer.appendChild(ul)
 })
 
-// async function adicionarFilme (filmeId) {
-//   const result = await HttpClient.get({
-//     url: `https://api.themoviedb.org/3/movie/${filmeId}?api_key=${apiKey}&language=en-US`,
-//     method: 'GET'
-//   })
-//   console.log(result)
-// }
+const adicionarFilme = async (filmeId: number) => {
+  const req = new Request(`${baseUrl}/movie/${filmeId}?api_key=${apiKey}&language=en-US`, {
+    method: 'GET'
+  })
+
+  return await api<Movie>(req)
+}
 
 // async function criarLista (nomeDaLista, descricao) {
 //   const result = await HttpClient.get({
