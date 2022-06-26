@@ -18,11 +18,11 @@ const loginContainer = document.querySelector('#login-container') as HTMLFormEle
 // eslint-disable-next-line
 const usernameInput = document.getElementById('login') as HTMLInputElement
 // eslint-disable-next-line
-let username: string = usernameInput.value
+let username: string
 // eslint-disable-next-line
 const passwordinput = document.getElementById('senha') as HTMLInputElement
 // eslint-disable-next-line
-const password: string = passwordinput.value
+const password: string
 // eslint-disable-next-line
 const loginButton = document.getElementById('login-button') as HTMLButtonElement
 // eslint-disable-next-line
@@ -101,6 +101,10 @@ loginButton.addEventListener('click', async (event) => {
     console.log(error)
   }
 })
+
+const validateLoginButton = () => {
+  loginButton.disabled = Boolean(password && username && apiKey)
+}
 
 // loginButton.addEventListener('click', async (event) => {
 // try {
