@@ -135,28 +135,11 @@ passwordInput.addEventListener('change', preencherSenha)
 
 apiKeyInput.addEventListener('change', preencherApi)
 
-// searchButton.addEventListener('click', async () => {
-//   const lista = document.getElementById('lista')
-//   if (lista) {
-//     lista.outerHTML = ''
-//   }
-//   const query = document.getElementById('search').value
-//   const listaDeFilmes = await procurarFilme(query)
-//   const ul = document.createElement('ul')
-//   ul.id = 'lista'
-//   for (const item of listaDeFilmes.results) {
-//     const li = document.createElement('li')
-//     li.appendChild(document.createTextNode(item.original_title))
-//     ul.appendChild(li)
-//   }
-//   console.log(listaDeFilmes)
-//   searchContainer.appendChild(ul)
-// })
-
 interface Movie {
   adult: number
   id: number
   original_language: string
+  original_title: string
   overview: string
   popularity: number
   release_date: string
