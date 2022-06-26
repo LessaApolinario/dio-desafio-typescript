@@ -183,6 +183,30 @@ const createMovie = (movie: Movie) => {
 
   return elementAsString
 }
+
+searchButton.addEventListener('click', async (event) => {
+  event.preventDefault()
+
+  const lista = document.getElementById('lista')
+
+  if (lista) {
+    lista.outerHTML = ''
+  }
+
+  const query = searchInput.value
+  const listaDeFilmes = await procurarFilme(query)
+  const ul = document.createElement('ul')
+  ul.id = 'lista'
+
+  for (const item of listaDeFilmes) {
+    const li = document.createElement('li')
+    li.innerHTML = createMovie(item)
+    ul.appendChild(li)
+  }
+
+  searchContainer.appendChild(ul)
+})
+
 // async function adicionarFilme (filmeId) {
 //   const result = await HttpClient.get({
 //     url: `https://api.themoviedb.org/3/movie/${filmeId}?api_key=${apiKey}&language=en-US`,
