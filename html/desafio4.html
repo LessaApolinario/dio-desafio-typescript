@@ -8,30 +8,27 @@
 </head>
 <body>
   <div style="display: flex;">
-    <form action="" style="display: flex; width: 300px; height: 100px; justify-content: space-between; flex-direction: column;">
+    <form id="login-container" action="" style="display: flex; width: 300px; height: 100px; justify-content: space-between; flex-direction: column;">
         <input
           type="text"
           id="login"
           placeholder="Login"
-          onchange="preencherLogin(event)"
           name="username"
         />
         <input
           type="password"
           id="senha"
           placeholder="Senha"
-          onchange="preencherSenha(event)"
           name="password"
         />
         <input
           type="text"
           id="api-key"
           placeholder="Api Key"
-          onchange="preencherApi()"
           name="api_key"
         />
 
-        <button id="login-button" >Login</button>
+        <button id="login-button" type="submit" disabled>Login</button>
     </form>
     <form id="search-container" style="margin-left: 20px">
         <input
