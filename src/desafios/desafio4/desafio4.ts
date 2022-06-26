@@ -106,6 +106,21 @@ const validateLoginButton = () => {
   loginButton.disabled = Boolean(password && username && apiKey)
 }
 
+const preencherLogin = () => {
+  username = usernameInput.value
+  validateLoginButton()
+}
+
+const preencherSenha = () => {
+  password = passwordInput.value
+  validateLoginButton()
+}
+
+const preencherApi = () => {
+  apiKey = apiKeyInput.value
+  validateLoginButton()
+}
+
 // loginButton.addEventListener('click', async (event) => {
 // try {
 //   await criarRequestToken()
