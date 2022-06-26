@@ -83,7 +83,7 @@ const logar = async () => {
 const criarSessao = async () => {
   apiKey = apiKeyInput.value
   const req = new Request(`${baseUrl}/authentication/session/new?api_key=${apiKey}&request_token=${requestToken}`, {
-    method: 'POST'
+    method: 'GET'
   })
   const response = await api<SessionData>(req)
   const { session_id } = response
@@ -133,34 +133,6 @@ passwordInput.addEventListener('change', preencherSenha)
 
 apiKeyInput.addEventListener('change', preencherApi)
 
-// loginButton.addEventListener('click', async (event) => {
-// try {
-//   await criarRequestToken()
-//   await logar()
-//   await criarSessao()
-// } catch (error) {
-//   console.log(error)
-// }
-// })
-
-// var apiKey = '3f301be7381a03ad8d352314dcc3ec1d'
-// let apiKey
-// let requestToken
-// let username
-// let password
-// let sessionId
-// const listId = '7101979'
-
-// const loginButton = document.getElementById('login-button')
-// const searchButton = document.getElementById('search-button')
-// const searchContainer = document.getElementById('search-container')
-
-// loginButton.addEventListener('click', async () => {
-//   await criarRequestToken()
-//   await logar()
-//   await criarSessao()
-// })
-
 // searchButton.addEventListener('click', async () => {
 //   const lista = document.getElementById('lista')
 //   if (lista) {
@@ -178,61 +150,6 @@ apiKeyInput.addEventListener('change', preencherApi)
 //   console.log(listaDeFilmes)
 //   searchContainer.appendChild(ul)
 // })
-
-// function preencherSenha () {
-//   password = document.getElementById('senha').value
-//   validateLoginButton()
-// }
-
-// function preencherLogin () {
-//   username = document.getElementById('login').value
-//   validateLoginButton()
-// }
-
-// function preencherApi () {
-//   apiKey = document.getElementById('api-key').value
-//   validateLoginButton()
-// }
-
-// function validateLoginButton () {
-//   if (password && username && apiKey) {
-//     loginButton.disabled = false
-//   } else {
-//     loginButton.disabled = true
-//   }
-// }
-
-// class HttpClient {
-//   static async get ({ url, method, body = null }) {
-//     return new Promise((resolve, reject) => {
-//       const request = new XMLHttpRequest()
-//       request.open(method, url, true)
-
-//       request.onload = () => {
-//         if (request.status >= 200 && request.status < 300) {
-//           resolve(JSON.parse(request.responseText))
-//         } else {
-//           reject({
-//             status: request.status,
-//             statusText: request.statusText
-//           })
-//         }
-//       }
-//       request.onerror = () => {
-//         reject({
-//           status: request.status,
-//           statusText: request.statusText
-//         })
-//       }
-
-//       if (body) {
-//         request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
-//         body = JSON.stringify(body)
-//       }
-//       request.send(body)
-//     })
-//   }
-// }
 
 // async function procurarFilme (query) {
 //   query = encodeURI(query)
@@ -311,16 +228,3 @@ apiKeyInput.addEventListener('change', preencherApi)
 //   })
 //   console.log(result)
 // }
-
-/* <div style="display: flex;">
-  <div style="display: flex; width: 300px; height: 100px; justify-content: space-between; flex-direction: column;">
-      <input id="login" placeholder="Login" onchange="preencherLogin(event)">
-      <input id="senha" placeholder="Senha" type="password" onchange="preencherSenha(event)">
-      <input id="api-key" placeholder="Api Key" onchange="preencherApi()">
-      <button id="login-button" disabled>Login</button>
-  </div>
-  <div id="search-container" style="margin-left: 20px">
-      <input id="search" placeholder="Escreva...">
-      <button id="search-button">Pesquisar Filme</button>
-  </div>
-</div> */
