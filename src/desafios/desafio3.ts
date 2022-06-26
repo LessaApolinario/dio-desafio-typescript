@@ -1,19 +1,19 @@
 // O código abaixo tem alguns erros e não funciona como deveria. Você pode identificar quais são e corrigi-los em um arquivo TS?
 
-export const botaoAtualizar = document.getElementById('atualizar-saldo') as HTMLButtonElement
-export const botaoLimpar = document.getElementById('limpar-saldo') as HTMLButtonElement
-export const soma = document.getElementById('soma') as HTMLInputElement
-export const campoSaldo = document.getElementById('campo-saldo') as HTMLSpanElement
+const botaoAtualizar = document.getElementById('atualizar-saldo') as HTMLButtonElement
+const botaoLimpar = document.getElementById('limpar-saldo') as HTMLButtonElement
+const soma = document.getElementById('soma') as HTMLInputElement
+const campoSaldo = document.getElementById('campo-saldo') as HTMLSpanElement
 
 campoSaldo.textContent = '0'
 
-export function somarAoSaldo (soma: number) {
+function somarAoSaldo (soma: number) {
   let saldoAtual = Number(campoSaldo.textContent)
   saldoAtual += soma
   campoSaldo.textContent = saldoAtual.toString()
 }
 
-export function limparSaldo () {
+function limparSaldo () {
   campoSaldo.textContent = ''
 }
 
