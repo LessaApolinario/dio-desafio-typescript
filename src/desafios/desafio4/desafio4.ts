@@ -20,9 +20,9 @@ const usernameInput = document.getElementById('login') as HTMLInputElement
 // eslint-disable-next-line
 let username: string
 // eslint-disable-next-line
-const passwordinput = document.getElementById('senha') as HTMLInputElement
+const passwordInput = document.getElementById('senha') as HTMLInputElement
 // eslint-disable-next-line
-const password: string
+let password: string
 // eslint-disable-next-line
 const loginButton = document.getElementById('login-button') as HTMLButtonElement
 // eslint-disable-next-line
