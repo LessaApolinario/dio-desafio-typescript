@@ -162,6 +162,27 @@ const procurarFilme = async (query: string) => {
   return results
 }
 
+const createMovie = (movie: Movie) => {
+  const { adult, original_language, original_title } = movie
+  const { overview, popularity, release_date } = movie
+
+  const elementAsString = `
+    <p>${original_title}</p>
+    <p>Lang: ${original_language}</p>
+    <p>${overview}</p>
+    <p>${popularity}</p>
+    <p>${release_date}</p>
+  `
+
+  if (adult) {
+    return `
+      ${elementAsString}
+      <p style="font-weight: bold;color: red;">Atenção, este filme é para adultos</p>
+    `
+  }
+
+  return elementAsString
+}
 // async function adicionarFilme (filmeId) {
 //   const result = await HttpClient.get({
 //     url: `https://api.themoviedb.org/3/movie/${filmeId}?api_key=${apiKey}&language=en-US`,
