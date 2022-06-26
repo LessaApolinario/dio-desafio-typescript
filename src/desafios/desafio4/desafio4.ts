@@ -162,6 +162,38 @@ const procurarFilme = async (query: string) => {
   return results
 }
 
+const abbreviateMonth = (month: string) => {
+  const months: Record<string, string> = {
+    1: 'jan',
+    2: 'fev',
+    3: 'mar',
+    4: 'abr',
+    5: 'maio',
+    6: 'jun',
+    7: 'jul',
+    8: 'ago',
+    9: 'set',
+    10: 'out',
+    11: 'nov',
+    12: 'dez'
+  }
+
+  return months[month] || 'Não existe um mês do ano correspondente'
+}
+
+const formatDate = (dateAsString: string) => {
+  const date = new Date(dateAsString)
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const year = date.getFullYear()
+
+  const abbreviatedMonth = abbreviateMonth(month.toString())
+
+  return dateAsString.includes('-')
+    ? `${day} de ${abbreviatedMonth} de ${year}`
+    : dateAsString
+}
+
 const createMovie = (movie: Movie) => {
   const { adult, original_language, original_title } = movie
   const { overview, popularity, release_date } = movie
