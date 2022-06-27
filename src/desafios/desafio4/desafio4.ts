@@ -34,6 +34,10 @@ const searchInput = document.getElementById('search') as HTMLInputElement
 
 const addFilmeButton = document.querySelector('button[type="button"]') as HTMLButtonElement
 
+const movieInput = document.getElementById('movie-id') as HTMLInputElement
+
+const addFilmeList = document.querySelector('ul[data-js="movies"]') as HTMLUListElement
+
 const baseUrl = 'https://api.themoviedb.org/3'
 let requestToken: string
 let sessionId: string
@@ -160,7 +164,7 @@ const procurarFilme = async (query: string) => {
   })
   const response = await api<MoviesResults>(req)
   const { results } = response
-
+  console.log(results)
   return results
 }
 
@@ -242,12 +246,34 @@ searchButton.addEventListener('click', async (event) => {
 })
 
 const adicionarFilme = async (filmeId: number) => {
+  apiKey = apiKeyInput.value
   const req = new Request(`${baseUrl}/movie/${filmeId}?api_key=${apiKey}&language=en-US`, {
     method: 'GET'
   })
 
   return await api<Movie>(req)
 }
+
+addFilmeButton.addEventListener('click', async (event) => {
+  event.preventDefault()
+  const id = Number(movieInput.value)
+
+  const li = document.createElement('li') as HTMLLIElement
+
+  try {
+    const { original_title, original_language, overview, popularity, release_date } = await adicionarFilme(id)
+    li.innerHTML = `
+      <p>${original_title}</p>
+      <p>Lang: ${original_language}</p>
+      <p>${overview}</p>
+      <p>${popularity}</p>
+      <p>${formatDate(release_date)}</p>
+    `
+    addFilmeList.appendChild(li)
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 // async function criarLista (nomeDaLista, descricao) {
 //   const result = await HttpClient.get({
