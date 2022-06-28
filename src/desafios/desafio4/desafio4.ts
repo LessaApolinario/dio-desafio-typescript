@@ -309,6 +309,12 @@ const criarLista = async (nomeDaLista: string, descricao: string) => {
   return result
 }
 
+interface AddMovieStatus {
+  status_code: number
+  status_message: string
+  sucess: boolean
+}
+
 const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
   apiKey = apiKeyInput.value
 
@@ -320,8 +326,15 @@ const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
     body: formData
   })
 
-  const result = await api(req)
-  console.log(result)
+  try {
+    const { sucess } = await api<AddMovieStatus>(req)
+
+    if (sucess) {
+      console.log('Filme adicionado com sucesso')
+    }
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 createListButton.addEventListener('click', async (event) => {
