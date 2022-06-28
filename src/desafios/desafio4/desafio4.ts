@@ -354,15 +354,17 @@ createListButton.addEventListener('click', async (event) => {
   }
 })
 
-// TODO:: refatorar esse código
 addMovieButton.addEventListener('click', async (event) => {
   event.preventDefault()
   const filmeId = Number(movieIdInput.value)
   const listaId = Number(listIdInput.value)
 
   try {
-    const movie = await adicionarFilmeNaLista(filmeId, listaId)
-    console.log(movie)
+    const { sucess } = await adicionarFilmeNaLista(filmeId, listaId)
+
+    if (sucess) {
+      console.log('Filme adicionado com sucesso!')
+    }
   } catch (error) {
     console.log(error)
   }
