@@ -327,10 +327,11 @@ const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
   })
 
   try {
-    const { sucess } = await api<AddMovieStatus>(req)
+    const result = await api<AddMovieStatus>(req)
 
-    if (sucess) {
+    if (result.sucess) {
       console.log('Filme adicionado com sucesso')
+      return result
     }
   } catch (error) {
     console.log(error)
