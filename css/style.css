@@ -91,6 +91,14 @@ button, input {
   margin-bottom: 0;
 }
 
+.list-inputs {
+  gap: 1rem;
+}
+
+.list-inputs input {
+  flex: 1;
+}
+
 #login-container,
 #search-container,
 .movies-list,
