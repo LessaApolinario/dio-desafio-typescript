@@ -347,3 +347,15 @@ addMovieButton.addEventListener('click', async (event) => {
     console.log(error)
   }
 })
+
+const pegarLista = async () => {
+  apiKey = apiKeyInput.value
+  const listId = listIdInput.value
+
+  const req = new Request(`${baseUrl}/list/${listId}?api_key=${apiKey}`, {
+    method: 'GET'
+  })
+
+  const result = await api<List>(req)
+  console.log(result)
+}
