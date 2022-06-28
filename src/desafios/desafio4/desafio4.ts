@@ -54,10 +54,10 @@ interface SessionData {
 }
 
 // eslint-disable-next-line
-const api = async <T>(req: Request) => {
+const api = async <T>(req: Request): Promise<T> => {
   const res = await fetch(req)
   const data = await res.json()
-  return <T>data
+  return data
 }
 
 // eslint-disable-next-line
