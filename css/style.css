@@ -79,7 +79,7 @@ button, input {
 .created-movies-list {
   align-items: stretch;
   flex-direction: column;
-}scoll
+}
 
 .created-movies-list .buttons {
   margin-bottom: 1rem;
