@@ -164,7 +164,6 @@ const procurarFilme = async (query: string) => {
   })
   const response = await api<MoviesResults>(req)
   const { results } = response
-  console.log(results)
   return results
 }
 
