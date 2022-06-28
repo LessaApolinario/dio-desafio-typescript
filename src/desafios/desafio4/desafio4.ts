@@ -221,17 +221,17 @@ const createMovie = (movie: Movie) => {
   const { overview, popularity, release_date } = movie
 
   const elementAsString = `
-    <p>${original_title}</p>
-    <p>Lang: ${original_language}</p>
-    <p>${overview}</p>
-    <p>${popularity}</p>
-    <p>${formatDate(release_date)}</p>
-  `
+      <p class="title">${original_title}</p>
+      <p class="language">Language: <span>${original_language}</span></p>
+      <p class="overview">Overview: <span>${overview}</span></p>
+      <p class="popularity">Popularity: ${popularity}</p>
+      <p class="release_date">${formatDate(release_date)}</p>
+    `
 
   if (adult) {
     return `
       ${elementAsString}
-      <p style="font-weight: bold;color: red;">Atenção, este filme é para adultos</p>
+      <p class="adult">Atenção, este filme é para adultos</p>
     `
   }
 
@@ -279,14 +279,8 @@ addFilmeButton.addEventListener('click', async (event) => {
   const li = document.createElement('li') as HTMLLIElement
 
   try {
-    const { original_title, original_language, overview, popularity, release_date } = await adicionarFilme(id)
-    li.innerHTML = `
-      <p>${original_title}</p>
-      <p>Lang: ${original_language}</p>
-      <p>${overview}</p>
-      <p>${popularity}</p>
-      <p>${formatDate(release_date)}</p>
-    `
+    const movie = await adicionarFilme(id)
+    li.innerHTML = createMovie(movie)
     addFilmeList.appendChild(li)
   } catch (error) {
     console.log(error)
@@ -419,19 +413,10 @@ const insertCreatedListIntoDOM = (createdList: CreatedList) => {
   ul.appendChild(h3)
 
   items.map(item => {
-    const { original_title, original_language } = item
-    const { overview, popularity, release_date } = item
-
     const li = document.createElement('li') as HTMLLIElement
     li.classList.add('movie-item')
 
-    li.innerHTML = `
-      <p>${original_title}</p>
-      <p>Lang: ${original_language}</p>
-      <p>${overview}</p>
-      <p>${popularity}</p>
-      <p>${formatDate(release_date)}</p>
-    `
+    li.innerHTML = createMovie(item)
 
     ul.appendChild(li)
     return li
