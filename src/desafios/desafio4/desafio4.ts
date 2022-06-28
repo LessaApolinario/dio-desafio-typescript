@@ -348,6 +348,14 @@ addMovieButton.addEventListener('click', async (event) => {
   }
 })
 
+interface CreatedList {
+  created_by: string
+  description: string
+  id: number
+  items: MoviesResults
+  name: string
+}
+
 const pegarLista = async () => {
   apiKey = apiKeyInput.value
   const listId = listIdInput.value
