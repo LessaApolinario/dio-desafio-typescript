@@ -136,3 +136,12 @@ button, input {
   height: 25rem;
   overflow-y: auto;
 }
+
+.undefined-movie {
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 700;
+
+  text-decoration: wavy underline;
+  color: red;
+}
