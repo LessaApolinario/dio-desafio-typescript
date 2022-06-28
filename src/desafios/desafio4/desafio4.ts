@@ -105,6 +105,7 @@ loginButton.addEventListener('click', async (event) => {
     await criarRequestToken()
     await logar()
     await criarSessao()
+    await criarLista('Terror', 'somente filmes macabros')
   } catch (error) {
     console.log(error)
   }
@@ -275,18 +276,29 @@ addFilmeButton.addEventListener('click', async (event) => {
   }
 })
 
-// async function criarLista (nomeDaLista, descricao) {
-//   const result = await HttpClient.get({
-//     url: `https://api.themoviedb.org/3/list?api_key=${apiKey}&session_id=${sessionId}`,
-//     method: 'POST',
-//     body: {
-//       name: nomeDaLista,
-//       description: descricao,
-//       language: 'pt-br'
-//     }
-//   })
-//   console.log(result)
-// }
+interface List {
+  list_id: number
+  status_code: number
+  status_message: string
+  sucess: boolean
+}
+
+const criarLista = async (nomeDaLista: string, descricao: string) => {
+  apiKey = apiKeyInput.value
+
+  const formData = new FormData()
+  formData.append('name', nomeDaLista)
+  formData.append('description', descricao)
+  formData.append('language', 'pt-br')
+
+  const req = new Request(`${baseUrl}/list?api_key=${apiKey}&session_id=${sessionId}`, {
+    method: 'POST',
+    body: formData
+  })
+
+  const result = await api<List>(req)
+  return result
+}
 
 // async function adicionarFilmeNaLista (filmeId, listaId) {
 //   const result = await HttpClient.get({
