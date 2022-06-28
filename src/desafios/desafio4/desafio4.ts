@@ -359,3 +359,15 @@ const pegarLista = async () => {
   const result = await api<List>(req)
   console.log(result)
 }
+
+const getListButton = document.getElementById('get-list') as HTMLButtonElement
+
+getListButton.addEventListener('click', async (event) => {
+  event.preventDefault()
+
+  try {
+    await pegarLista()
+  } catch (error) {
+    console.log(error)
+  }
+})
