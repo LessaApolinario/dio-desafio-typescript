@@ -301,6 +301,21 @@ const criarLista = async (nomeDaLista: string, descricao: string) => {
   return result
 }
 
+const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
+  apiKey = apiKeyInput.value
+
+  const formData = new FormData()
+  formData.append('media_id', filmeId.toString())
+
+  const req = new Request(`${baseUrl}/list/${listaId}/add_item?api_key=${apiKey}&session_id=${sessionId}`, {
+    method: 'POST',
+    body: formData
+  })
+
+  const result = await api(req)
+  console.log(result)
+}
+
 const listNameInput = document.getElementById('nome-da-lista') as HTMLInputElement
 const listDescriptionInput = document.getElementById('descricao') as HTMLInputElement
 
