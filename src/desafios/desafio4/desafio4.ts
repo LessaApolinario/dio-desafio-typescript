@@ -364,8 +364,11 @@ const pegarLista = async () => {
     method: 'GET'
   })
 
-  const result = await api<List>(req)
+  const result = await api<CreatedList>(req)
+
   console.log(result)
+
+  return result
 }
 
 const getListButton = document.getElementById('get-list') as HTMLButtonElement
