@@ -50,6 +50,8 @@ const getCreatedListDiv = document.querySelector('.get-list') as HTMLDivElement
 
 const getListButton = document.getElementById('get-list') as HTMLButtonElement
 
+const createdListContainer = document.getElementById('lista-criada') as HTMLUListElement
+
 const baseUrl = 'https://api.themoviedb.org/3'
 let requestToken: string
 let sessionId: string
@@ -329,12 +331,8 @@ const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
   })
 
   try {
-    const result = await api<AddMovieStatus>(req)
-
-    if (result.sucess) {
-      console.log('Filme adicionado com sucesso')
-      return result
-    }
+    const result = await api<Movie>(req)
+    return result
   } catch (error) {
     console.log(error)
   }
@@ -361,7 +359,22 @@ addMovieButton.addEventListener('click', async (event) => {
   const listaId = Number(listIdInput.value)
 
   try {
-    await adicionarFilmeNaLista(filmeId, listaId)
+    const movie = await adicionarFilmeNaLista(filmeId, listaId)
+
+    if (movie) {
+      const { original_title, original_language, overview, popularity, release_date } = movie
+
+      const li = document.createElement('li') as HTMLLIElement
+      li.innerHTML = `
+        <p>${original_title}</p>
+        <p>Lang: ${original_language}</p>
+        <p>${overview}</p>
+        <p>${popularity}</p>
+        <p>${formatDate(release_date)}</p>
+      `
+
+      createdListContainer.appendChild(li)
+    }
   } catch (error) {
     console.log(error)
   }
