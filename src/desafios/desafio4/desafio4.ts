@@ -303,8 +303,6 @@ const criarLista = async (nomeDaLista: string, descricao: string) => {
 
 const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
   apiKey = apiKeyInput.value
-  await criarRequestToken()
-  sessionId = await criarSessao()
 
   const formData = new FormData()
   formData.append('media_id', filmeId.toString())
@@ -334,10 +332,18 @@ createListButton?.addEventListener('click', async (event) => {
   const descricao = listDescriptionInput.value
   await criarLista(nomeDaLista, descricao)
 })
-// async function pegarLista () {
-//   const result = await HttpClient.get({
-//     url: `https://api.themoviedb.org/3/list/${listId}?api_key=${apiKey}`,
-//     method: 'GET'
-//   })
-//   console.log(result)
-// }
+
+// TODO:: Debugar esta função e entender porquê as requisições são negadas
+addMovieButton.addEventListener('click', async (event) => {
+  event.preventDefault()
+  const filmeId = Number(listIdInput.value)
+  const listaId = Number(movieIdInput.value)
+
+  try {
+    requestToken = await criarRequestToken()
+    sessionId = await criarSessao()
+    await adicionarFilmeNaLista(filmeId, listaId)
+  } catch (error) {
+    console.log(error)
+  }
+})
