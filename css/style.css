@@ -35,11 +35,15 @@ button, input {
   margin-bottom: 1rem;
 }
 
-.container {
+.flex-container {
   display: flex;
-  flex-flow: row wrap;
+  align-items: center;
   justify-content: space-between;
+}
 
+.container {
+  flex-flow: row wrap;
+  align-items: stretch;
   gap: 2rem;
 
   padding: 2rem 4rem;
@@ -51,40 +55,29 @@ button, input {
 }
 
 #login-container {
-  display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: stretch;
 }
 
 #search-container {
-  display: flex;
   flex-direction: column;
+  align-items: stretch;
 }
 
 .movies {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   gap: 2rem;
 
   padding: 2rem 4rem;
 }
 
 .movies-list {
-  display: flex;
   flex-direction: column;
+  align-items: stretch;
 }
 
 .created-movies-list {
-  display: flex;
+  align-items: stretch;
   flex-direction: column;
-}
-
-.created-movies-list .buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .created-movies-list .buttons {
