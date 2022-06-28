@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Desafio 4</title>
+  <link rel="stylesheet" href="../css/style.css" />
   <script type="module" src="../dist/desafios/desafio4/desafio4.js"></script>
 </head>
 <body>
-  <div style="display: flex;">
-    <form id="login-container" action="" style="display: flex; width: 300px; height: 100px; justify-content: space-between; flex-direction: column;">
+  <div class="container flex-container">
+    <form id="login-container" class="flex-container" action="#">
         <input
           type="text"
           id="login"
@@ -30,7 +31,8 @@
 
         <button id="login-button" type="submit" disabled>Login</button>
     </form>
-    <form id="search-container" style="margin-left: 20px">
+
+    <form action="#" id="search-container" class="flex-container">
         <input
           type="text"
           id="search"
@@ -40,8 +42,10 @@
         
         <button id="search-button">Pesquisar Filme</button>
     </form>
+  </div>
 
-    <div class="movies-list" style="display: flex; flex-direction: column; margin-left: 20px;">
+  <div class="movies flex-container">
+    <div class="movies-list flex-container">
       <input
         type="text"
         id="movie-id"
@@ -50,6 +54,20 @@
       />
       <button type="button">Adicionar filme</button>
       <ul data-js="movies"></ul>
+    </div>
+
+    <div class="created-movies-list flex-container">
+      <input
+        type="text"
+        id="list-id"
+        placeholder="ID da lista..."
+        name="list-id"
+      />
+
+      <div class="buttons flex-container">
+        <button type="button">Criar lista</button>
+        <button type="button">Adicionar na lista</button>
+      </div>
     </div>
   </div>
 </body>
