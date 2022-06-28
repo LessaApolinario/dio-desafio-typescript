@@ -328,7 +328,15 @@ createListButton.addEventListener('click', async (event) => {
   event.preventDefault()
   const nomeDaLista = listNameInput.value
   const descricao = listDescriptionInput.value
-  await criarLista(nomeDaLista, descricao)
+  try {
+    const { sucess, list_id } = await criarLista(nomeDaLista, descricao)
+
+    if (sucess) {
+      console.log('Lista criada com sucesso, ID: ', list_id)
+    }
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 addMovieButton.addEventListener('click', async (event) => {
