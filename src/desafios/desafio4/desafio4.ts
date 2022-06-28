@@ -105,7 +105,6 @@ loginButton.addEventListener('click', async (event) => {
     await criarRequestToken()
     await logar()
     await criarSessao()
-    await criarLista('Terror', 'somente filmes macabros')
   } catch (error) {
     console.log(error)
   }
