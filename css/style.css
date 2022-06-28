@@ -123,3 +123,16 @@ button, input {
   overflow-y: auto;
   height: 25rem;
 }
+
+.get-list {
+  align-items: stretch;
+  flex-direction: column;
+  
+  height: 100%;
+  overflow: hidden;
+}
+
+.lista-criada {
+  height: 25rem;
+  overflow-y: auto;
+}

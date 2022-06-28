@@ -46,6 +46,8 @@ const createListButton = document.getElementById('create-list') as HTMLButtonEle
 
 const addMovieButton = document.getElementById('add-movie-into-list') as HTMLButtonElement
 
+const getCreatedListDiv = document.querySelector('.get-list') as HTMLDivElement
+
 const getListButton = document.getElementById('get-list') as HTMLButtonElement
 
 const baseUrl = 'https://api.themoviedb.org/3'
@@ -388,11 +390,49 @@ const pegarLista = async () => {
   return result
 }
 
+const insertCreatedListIntoDOM = (createdList: CreatedList) => {
+  const { created_by, description, items, name } = createdList
+
+  const h2 = document.createElement('h2') as HTMLHeadingElement
+  h2.textContent = `Lista criada por ${created_by}`
+
+  getCreatedListDiv.appendChild(h2)
+
+  const h3 = document.createElement('h3') as HTMLHeadingElement
+  h3.textContent = `${name} | ${description}`
+
+  getCreatedListDiv.appendChild(h3)
+
+  const ul = document.createElement('ul') as HTMLUListElement
+  ul.id = 'lista-criada'
+  getCreatedListDiv.appendChild(ul)
+
+  items.map(item => {
+    const { original_title, original_language } = item
+    const { overview, popularity, release_date } = item
+
+    const li = document.createElement('li') as HTMLLIElement
+    li.classList.add('movie-item')
+
+    li.innerHTML = `
+      <p>${original_title}</p>
+      <p>Lang: ${original_language}</p>
+      <p>${overview}</p>
+      <p>${popularity}</p>
+      <p>${formatDate(release_date)}</p>
+    `
+
+    ul.appendChild(li)
+    return li
+  })
+}
+
 getListButton.addEventListener('click', async (event) => {
   event.preventDefault()
 
   try {
-    await pegarLista()
+    const createdList = await pegarLista()
+    insertCreatedListIntoDOM(createdList)
   } catch (error) {
     console.log(error)
   }
