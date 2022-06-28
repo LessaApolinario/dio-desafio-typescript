@@ -335,12 +335,8 @@ const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
     body: formData
   })
 
-  try {
-    const result = await api<AddMovieStatus>(req)
-    return result
-  } catch (error) {
-    console.log(error)
-  }
+  const result = await api<AddMovieStatus>(req)
+  return result
 }
 
 createListButton.addEventListener('click', async (event) => {
