@@ -235,11 +235,13 @@ searchButton.addEventListener('click', async (event) => {
   const ul = document.createElement('ul')
   ul.id = 'lista'
 
-  for (const item of listaDeFilmes) {
+  listaDeFilmes.map(item => {
     const li = document.createElement('li')
     li.innerHTML = createMovie(item)
     ul.appendChild(li)
-  }
+
+    return li
+  })
 
   searchContainer.appendChild(ul)
 })
