@@ -324,7 +324,7 @@ const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
   console.log(result)
 }
 
-createListButton?.addEventListener('click', async (event) => {
+createListButton.addEventListener('click', async (event) => {
   event.preventDefault()
   const nomeDaLista = listNameInput.value
   const descricao = listDescriptionInput.value
