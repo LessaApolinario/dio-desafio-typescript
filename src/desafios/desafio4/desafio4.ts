@@ -336,7 +336,7 @@ const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
   })
 
   try {
-    const result = await api<Movie>(req)
+    const result = await api<AddMovieStatus>(req)
     return result
   } catch (error) {
     console.log(error)
@@ -366,21 +366,7 @@ addMovieButton.addEventListener('click', async (event) => {
 
   try {
     const movie = await adicionarFilmeNaLista(filmeId, listaId)
-
-    if (movie) {
-      const { original_title, original_language, overview, popularity, release_date } = movie
-
-      const li = document.createElement('li') as HTMLLIElement
-      li.innerHTML = `
-        <p>${original_title}</p>
-        <p>Lang: ${original_language}</p>
-        <p>${overview}</p>
-        <p>${popularity}</p>
-        <p>${formatDate(release_date)}</p>
-      `
-
-      createdListContainer.appendChild(li)
-    }
+    console.log(movie)
   } catch (error) {
     console.log(error)
   }
