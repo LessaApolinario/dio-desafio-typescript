@@ -297,20 +297,26 @@ const criarLista = async (nomeDaLista: string, descricao: string) => {
   })
 
   const result = await api<List>(req)
+  console.log(result)
   return result
 }
 
-// async function adicionarFilmeNaLista (filmeId, listaId) {
-//   const result = await HttpClient.get({
-//     url: `https://api.themoviedb.org/3/list/${listaId}/add_item?api_key=${apiKey}&session_id=${sessionId}`,
-//     method: 'POST',
-//     body: {
-//       media_id: filmeId
-//     }
-//   })
-//   console.log(result)
-// }
+const listNameInput = document.getElementById('nome-da-lista') as HTMLInputElement
+const listDescriptionInput = document.getElementById('descricao') as HTMLInputElement
 
+const addListInput = document.getElementById('list-id') as HTMLInputElement
+const addMovieInput = document.getElementById('add-movie-id') as HTMLInputElement
+
+const createListButton = document.getElementById('create-list') as HTMLButtonElement
+const addMOvieButton = document.getElementById('add-movie-into-list') as HTMLButtonElement
+
+// 8208508
+createListButton?.addEventListener('click', async (event) => {
+  event.preventDefault()
+  const nomeDaLista = listNameInput.value
+  const descricao = listDescriptionInput.value
+  await criarLista(nomeDaLista, descricao)
+})
 // async function pegarLista () {
 //   const result = await HttpClient.get({
 //     url: `https://api.themoviedb.org/3/list/${listId}?api_key=${apiKey}`,
