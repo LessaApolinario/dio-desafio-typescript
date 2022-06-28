@@ -91,6 +91,14 @@ button, input {
   margin-bottom: 0;
 }
 
+.get-list {
+  justify-content: center;
+}
+
+.get-list #get-list {
+  flex: 1;
+}
+
 .list-inputs {
   gap: 1rem;
 }
