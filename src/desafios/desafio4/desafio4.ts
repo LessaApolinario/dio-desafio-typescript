@@ -324,7 +324,6 @@ const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
   console.log(result)
 }
 
-// 8208508
 createListButton?.addEventListener('click', async (event) => {
   event.preventDefault()
   const nomeDaLista = listNameInput.value
@@ -332,15 +331,12 @@ createListButton?.addEventListener('click', async (event) => {
   await criarLista(nomeDaLista, descricao)
 })
 
-// TODO:: Debugar esta função e entender porquê as requisições são negadas
 addMovieButton.addEventListener('click', async (event) => {
   event.preventDefault()
-  const filmeId = Number(listIdInput.value)
-  const listaId = Number(movieIdInput.value)
+  const filmeId = Number(movieIdInput.value)
+  const listaId = Number(listIdInput.value)
 
   try {
-    requestToken = await criarRequestToken()
-    sessionId = await criarSessao()
     await adicionarFilmeNaLista(filmeId, listaId)
   } catch (error) {
     console.log(error)
