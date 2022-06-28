@@ -9,27 +9,23 @@
 // Todas as requisições necessárias para as atividades acima já estão prontas, mas a implementação delas ficou pela metade (não vou dar tudo de graça).
 // Atenção para o listener do botão login-button que devolve o sessionID do usuário
 // É necessário fazer um cadastro no https://www.themoviedb.org/ e seguir a documentação do site para entender como gera uma API key https://developers.themoviedb.org/3/getting-started/introduction
-// eslint-disable-next-line
 const apiKeyInput = document.getElementById('api-key') as HTMLInputElement
-// eslint-disable-next-line
 let apiKey: string
-// eslint-disable-next-line
+
 const loginContainer = document.querySelector('#login-container') as HTMLFormElement
-// eslint-disable-next-line
+
 const usernameInput = document.getElementById('login') as HTMLInputElement
-// eslint-disable-next-line
 let username: string
-// eslint-disable-next-line
+
 const passwordInput = document.getElementById('senha') as HTMLInputElement
-// eslint-disable-next-line
 let password: string
-// eslint-disable-next-line
+
 const loginButton = document.getElementById('login-button') as HTMLButtonElement
-// eslint-disable-next-line
+
 const searchButton = document.getElementById('search-button') as HTMLButtonElement
-// eslint-disable-next-line
+
 const searchContainer = document.getElementById('search-container') as HTMLFormElement
-// eslint-disable-next-line
+
 const searchInput = document.getElementById('search') as HTMLInputElement
 
 const addFilmeButton = document.querySelector('button[type="button"]') as HTMLButtonElement
@@ -67,14 +63,12 @@ interface SessionData {
   session_id: string
 }
 
-// eslint-disable-next-line
 const api = async <T>(req: Request): Promise<T> => {
   const res = await fetch(req)
   const data = await res.json()
   return data
 }
 
-// eslint-disable-next-line
 const criarRequestToken = async () => {
   apiKey = apiKeyInput.value
 
