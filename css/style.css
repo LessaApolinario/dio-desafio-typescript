@@ -127,12 +127,12 @@ button, input {
 .get-list {
   align-items: stretch;
   flex-direction: column;
-  
+
   height: 100%;
   overflow: hidden;
 }
 
-.lista-criada {
+#lista-criada {
   height: 25rem;
   overflow-y: auto;
 }
