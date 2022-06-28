@@ -352,7 +352,7 @@ interface CreatedList {
   created_by: string
   description: string
   id: number
-  items: MoviesResults
+  items: Movie[]
   name: string
 }
 
