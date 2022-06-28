@@ -396,19 +396,27 @@ const pegarLista = async () => {
 const insertCreatedListIntoDOM = (createdList: CreatedList) => {
   const { created_by, description, items, name } = createdList
 
-  const h2 = document.createElement('h2') as HTMLHeadingElement
-  h2.textContent = `Lista criada por ${created_by}`
+  const list = document.getElementById('lista-criada') as HTMLUListElement
 
-  getCreatedListDiv.appendChild(h2)
-
-  const h3 = document.createElement('h3') as HTMLHeadingElement
-  h3.textContent = `${name} | ${description}`
-
-  getCreatedListDiv.appendChild(h3)
+  // Atualiza a lista
+  if (list) {
+    list.innerHTML = ''
+    list.remove()
+  }
 
   const ul = document.createElement('ul') as HTMLUListElement
   ul.id = 'lista-criada'
   getCreatedListDiv.appendChild(ul)
+
+  const h2 = document.createElement('h2') as HTMLHeadingElement
+  h2.textContent = `Lista criada por ${created_by}`
+
+  ul.appendChild(h2)
+
+  const h3 = document.createElement('h3') as HTMLHeadingElement
+  h3.textContent = `${name} | ${description}`
+
+  ul.appendChild(h3)
 
   items.map(item => {
     const { original_title, original_language } = item
