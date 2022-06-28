@@ -199,16 +199,21 @@ const abbreviateMonth = (month: string) => {
 }
 
 const formatDate = (dateAsString: string) => {
-  const date = new Date(dateAsString)
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const year = date.getFullYear()
+  if (!dateAsString.includes('-')) {
+    return dateAsString
+  }
 
-  const abbreviatedMonth = abbreviateMonth(month.toString())
+  const date = dateAsString.split('-')
 
-  return dateAsString.includes('-')
-    ? `${day} de ${abbreviatedMonth} de ${year}`
-    : dateAsString
+  let [year, month, day] = date
+
+  month = Number(month) < 10
+    ? month = month.replace('0', '')
+    : month
+
+  month = abbreviateMonth(month)
+
+  return `${day} de ${month} de ${year}`
 }
 
 const createMovie = (movie: Movie) => {
@@ -353,6 +358,7 @@ createListButton.addEventListener('click', async (event) => {
   }
 })
 
+// TODO:: refatorar esse código
 addMovieButton.addEventListener('click', async (event) => {
   event.preventDefault()
   const filmeId = Number(movieIdInput.value)
