@@ -38,6 +38,20 @@ const movieInput = document.getElementById('movie-id') as HTMLInputElement
 
 const addFilmeList = document.querySelector('ul[data-js="movies"]') as HTMLUListElement
 
+const listNameInput = document.getElementById('nome-da-lista') as HTMLInputElement
+
+const listDescriptionInput = document.getElementById('descricao') as HTMLInputElement
+
+const listIdInput = document.getElementById('list-id') as HTMLInputElement
+
+const movieIdInput = document.getElementById('add-movie-id') as HTMLInputElement
+
+const createListButton = document.getElementById('create-list') as HTMLButtonElement
+
+const addMovieButton = document.getElementById('add-movie-into-list') as HTMLButtonElement
+
+const getListButton = document.getElementById('get-list') as HTMLButtonElement
+
 const baseUrl = 'https://api.themoviedb.org/3'
 let requestToken: string
 let sessionId: string
@@ -316,15 +330,6 @@ const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
   console.log(result)
 }
 
-const listNameInput = document.getElementById('nome-da-lista') as HTMLInputElement
-const listDescriptionInput = document.getElementById('descricao') as HTMLInputElement
-
-const listIdInput = document.getElementById('list-id') as HTMLInputElement
-const movieIdInput = document.getElementById('add-movie-id') as HTMLInputElement
-
-const createListButton = document.getElementById('create-list') as HTMLButtonElement
-const addMovieButton = document.getElementById('add-movie-into-list') as HTMLButtonElement
-
 // 8208508
 createListButton?.addEventListener('click', async (event) => {
   event.preventDefault()
@@ -370,8 +375,6 @@ const pegarLista = async () => {
 
   return result
 }
-
-const getListButton = document.getElementById('get-list') as HTMLButtonElement
 
 getListButton.addEventListener('click', async (event) => {
   event.preventDefault()
