@@ -70,7 +70,7 @@ const criarRequestToken = async () => {
 
   const response = await api<RequestTokenData>(req)
   const { request_token } = response
-  requestToken = request_token
+  return request_token
 }
 
 const logar = async () => {
@@ -95,16 +95,16 @@ const criarSessao = async () => {
   })
   const response = await api<SessionData>(req)
   const { session_id } = response
-  sessionId = session_id
+  return session_id
 }
 
 loginButton.addEventListener('click', async (event) => {
   event.preventDefault()
 
   try {
-    await criarRequestToken()
+    requestToken = await criarRequestToken()
     await logar()
-    await criarSessao()
+    sessionId = await criarSessao()
   } catch (error) {
     console.log(error)
   }
@@ -303,6 +303,8 @@ const criarLista = async (nomeDaLista: string, descricao: string) => {
 
 const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
   apiKey = apiKeyInput.value
+  await criarRequestToken()
+  sessionId = await criarSessao()
 
   const formData = new FormData()
   formData.append('media_id', filmeId.toString())
@@ -319,11 +321,11 @@ const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
 const listNameInput = document.getElementById('nome-da-lista') as HTMLInputElement
 const listDescriptionInput = document.getElementById('descricao') as HTMLInputElement
 
-const addListInput = document.getElementById('list-id') as HTMLInputElement
-const addMovieInput = document.getElementById('add-movie-id') as HTMLInputElement
+const listIdInput = document.getElementById('list-id') as HTMLInputElement
+const movieIdInput = document.getElementById('add-movie-id') as HTMLInputElement
 
 const createListButton = document.getElementById('create-list') as HTMLButtonElement
-const addMOvieButton = document.getElementById('add-movie-into-list') as HTMLButtonElement
+const addMovieButton = document.getElementById('add-movie-into-list') as HTMLButtonElement
 
 // 8208508
 createListButton?.addEventListener('click', async (event) => {
