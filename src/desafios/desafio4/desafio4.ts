@@ -67,6 +67,39 @@ interface SessionData {
   session_id: string
 }
 
+interface Movie {
+  adult: boolean
+  id: number
+  original_language: string
+  original_title: string
+  overview: string
+  popularity: number
+  release_date: string
+  title: string
+  sucess: boolean
+  status_code: number
+  status_message: string
+}
+
+type MoviesResults = {
+  results: Movie[]
+}
+
+interface List {
+  list_id: number
+  status_code: number
+  status_message: string
+  sucess: boolean
+}
+
+interface CreatedList {
+  created_by: string
+  description: string
+  id: number
+  items: Movie[]
+  name: string
+}
+
 const api = async <T>(req: Request): Promise<T> => {
   const res = await fetch(req)
   const data = await res.json()
@@ -152,24 +185,6 @@ usernameInput.addEventListener('change', preencherLogin)
 passwordInput.addEventListener('change', preencherSenha)
 
 apiKeyInput.addEventListener('change', preencherApi)
-
-interface Movie {
-  adult: boolean
-  id: number
-  original_language: string
-  original_title: string
-  overview: string
-  popularity: number
-  release_date: string
-  title: string
-  sucess: boolean
-  status_code: number
-  status_message: string
-}
-
-type MoviesResults = {
-  results: Movie[]
-}
 
 const procurarFilme = async (query: string) => {
   query = encodeURI(query)
@@ -298,13 +313,6 @@ addFilmeButton.addEventListener('click', async (event) => {
   }
 })
 
-interface List {
-  list_id: number
-  status_code: number
-  status_message: string
-  sucess: boolean
-}
-
 const criarLista = async (nomeDaLista: string, descricao: string) => {
   apiKey = apiKeyInput.value
 
@@ -372,14 +380,6 @@ addMovieButton.addEventListener('click', async (event) => {
     console.log(error)
   }
 })
-
-interface CreatedList {
-  created_by: string
-  description: string
-  id: number
-  items: Movie[]
-  name: string
-}
 
 const pegarLista = async () => {
   apiKey = apiKeyInput.value
