@@ -323,12 +323,6 @@ const criarLista = async (nomeDaLista: string, descricao: string) => {
   return result
 }
 
-interface AddMovieStatus {
-  status_code: number
-  status_message: string
-  sucess: boolean
-}
-
 const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
   apiKey = apiKeyInput.value
 
@@ -340,7 +334,7 @@ const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
     body: formData
   })
 
-  const result = await api<AddMovieStatus>(req)
+  const result = await api<Movie>(req)
   return result
 }
 
@@ -369,6 +363,8 @@ addMovieButton.addEventListener('click', async (event) => {
 
     if (sucess) {
       console.log('Filme adicionado com sucesso!')
+    } else {
+      console.log('O filme não existe!')
     }
   } catch (error) {
     console.log(error)
