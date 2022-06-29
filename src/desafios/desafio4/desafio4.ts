@@ -340,8 +340,10 @@ const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
 
 createListButton.addEventListener('click', async (event) => {
   event.preventDefault()
+
   const nomeDaLista = listNameInput.value
   const descricao = listDescriptionInput.value
+
   try {
     const { sucess, list_id } = await criarLista(nomeDaLista, descricao)
 
