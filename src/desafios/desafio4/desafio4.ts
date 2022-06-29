@@ -162,6 +162,9 @@ interface Movie {
   popularity: number
   release_date: string
   title: string
+  sucess: boolean
+  status_code: number
+  status_message: string
 }
 
 type MoviesResults = {
@@ -199,10 +202,6 @@ const abbreviateMonth = (month: string) => {
 }
 
 const formatDate = (dateAsString: string) => {
-  if (!dateAsString.includes('-')) {
-    return dateAsString
-  }
-
   const date = dateAsString.split('-')
 
   let [year, month, day] = date
@@ -280,7 +279,15 @@ addFilmeButton.addEventListener('click', async (event) => {
 
   try {
     const movie = await adicionarFilme(id)
-    li.innerHTML = createMovie(movie)
+    const { status_code } = movie
+
+    if (status_code === 34) {
+      li.textContent = 'Este filme não existe!'
+      li.classList.add('undefined-movie')
+    } else {
+      li.innerHTML = createMovie(movie)
+    }
+
     addFilmeList.appendChild(li)
   } catch (error) {
     console.log(error)
