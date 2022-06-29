@@ -202,6 +202,10 @@ const abbreviateMonth = (month: string) => {
 }
 
 const formatDate = (dateAsString: string) => {
+  if (!dateAsString.includes('-')) {
+    return ''
+  }
+
   const date = dateAsString.split('-')
 
   let [year, month, day] = date
