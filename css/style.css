@@ -69,11 +69,19 @@ button, input {
   gap: 2rem;
 
   padding: 2rem 4rem;
+  align-items: flex-start;
 }
 
 .movies-list {
   flex-direction: column;
   align-items: stretch;
+
+  overflow: hidden;
+}
+
+ul[data-js="movies"] {
+  height: 25rem;
+  overflow-y: auto;
 }
 
 .created-movies-list {
