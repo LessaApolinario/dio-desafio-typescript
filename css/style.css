@@ -50,6 +50,14 @@ ul > * {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
 }
 
+ul > li {
+  padding: 1.5rem;
+}
+
+ul > li > p:not(:last-child) {
+  margin-bottom: 0.8rem;
+}
+
 .flex-container {
   display: flex;
   align-items: center;
