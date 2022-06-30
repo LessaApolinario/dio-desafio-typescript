@@ -35,6 +35,21 @@ button, input {
   margin-bottom: 1rem;
 }
 
+ul {
+  list-style: none;
+  padding: 1rem;
+}
+
+ul > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+ul > * {
+  padding: 0.5rem;
+
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+}
+
 .flex-container {
   display: flex;
   align-items: center;
