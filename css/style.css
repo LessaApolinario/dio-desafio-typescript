@@ -226,3 +226,21 @@ ul[data-js="movies"] {
   font-weight: bold;
   font-size: 1.25rem;
 }
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f2f2f2;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #808080;
+  border-radius: 10px;
+  border: 5px solid #f2f2f2;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #ccc;
+}
