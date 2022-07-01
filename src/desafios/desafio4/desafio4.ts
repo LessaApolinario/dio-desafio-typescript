@@ -99,10 +99,22 @@ interface CreatedList {
   name: string
 }
 
-const api = async <T>(req: Request): Promise<T> => {
-  const res = await fetch(req)
-  const data = await res.json()
-  return data
+const api = async <T>(req: Request): Promise<T | undefined> => {
+  try {
+    const response = await fetch(req)
+    const { ok, status } = response
+
+    console.log('status code: ', status)
+
+    if (!ok && status === 404) {
+      throw new Error(`Erro na requisição! status: ${status}`)
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const criarRequestToken = async () => {
@@ -297,7 +309,6 @@ addFilmeButton.addEventListener('click', async (event) => {
 
   try {
     const movie = await adicionarFilme(id)
-    const { status_code } = movie
 
     if (status_code === 34) {
       li.textContent = 'Este filme não existe!'
