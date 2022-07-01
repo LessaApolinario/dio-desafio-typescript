@@ -282,7 +282,7 @@ searchButton.addEventListener('click', async (event) => {
   const ul = document.createElement('ul')
   ul.id = 'lista'
 
-  listaDeFilmes.map(item => {
+  listaDeFilmes?.map(item => {
     const li = document.createElement('li')
     li.innerHTML = createMovie(item)
     ul.appendChild(li)
