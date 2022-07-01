@@ -298,7 +298,12 @@ const adicionarFilme = async (filmeId: number) => {
     method: 'GET'
   })
 
-  return await api<Movie>(req)
+  try {
+    const movie = await api<Movie>(req)
+    return movie
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 addFilmeButton.addEventListener('click', async (event) => {
