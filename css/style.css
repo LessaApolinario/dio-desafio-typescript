@@ -4,9 +4,13 @@
   box-sizing: border-box;
 }
 
-html, body, .container, .movies {
+html, body, main {
   width: 100%;
   height: 100%;
+}
+
+main {
+  flex-direction: column;
 }
 
 button {
@@ -59,6 +63,11 @@ ul > li > p:not(:last-child) {
   margin-bottom: 0.8rem;
 }
 
+.container, .movies {
+  height: 50%;
+  width: 100%;
+}
+
 .flex-container {
   display: flex;
   align-items: center;
@@ -66,7 +75,6 @@ ul > li > p:not(:last-child) {
 }
 
 .container {
-  flex-flow: row wrap;
   align-items: stretch;
   gap: 2rem;
 
@@ -75,7 +83,6 @@ ul > li > p:not(:last-child) {
 
 .container > * {
   width: 300px;
-  height: 100px;
 }
 
 #login-container {
@@ -206,7 +213,7 @@ ul[data-js="movies"] {
   font-weight: bold;
 
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
@@ -243,4 +250,43 @@ ul[data-js="movies"] {
 
 ::-webkit-scrollbar-thumb:active {
   background-color: #ccc;
+}
+
+@media (max-width: 768px) {
+  main#container {
+    justify-content: space-between;
+  }
+
+  .container, .movies {
+    height: 100%;
+    flex: 1;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #login-container, #search-container {
+    flex: 1;   
+    width: 80%;
+  }
+
+  .movies {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 0;
+  }
+
+  .movies-list, .created-movies-list {
+    flex: 1;   
+    width: 80%;
+  }
+
+  .get-list #get-list {
+    flex: 0;
+  }
 }
