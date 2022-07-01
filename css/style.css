@@ -38,6 +38,7 @@ button, input {
 ul {
   list-style: none;
   padding: 1rem;
+  width: 100%;
 }
 
 ul > *:not(:last-child) {
@@ -175,4 +176,53 @@ ul[data-js="movies"] {
 
   text-decoration: wavy underline;
   color: red;
+}
+
+.title {
+  display: block;
+
+  color: #000;
+  text-decoration: none;
+
+  margin: 0 auto 1rem;
+
+  font-size: 2rem;
+  font-weight: normal;
+  text-align: center;
+  
+  border-bottom: solid 3px transparent;
+}
+
+.title:hover {
+  border-bottom: solid 2px rgba(0, 0, 0, 0.5);
+}
+
+.language {
+  font-size: 1.05rem;
+}
+
+.overview {
+  font-size: 1.05rem;
+  font-weight: bold;
+
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.overview > span {
+  font-weight: normal;
+  text-align: justify;
+  word-wrap: break-word;
+}
+
+.popularity {
+  font-size: 1.2rem;
+}
+
+.release_date {
+  font-weight: bold;
+  font-size: 1.25rem;
 }
