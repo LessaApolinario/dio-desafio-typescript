@@ -50,8 +50,6 @@ const getCreatedListDiv = document.querySelector('.get-list') as HTMLDivElement
 
 const getListButton = document.getElementById('get-list') as HTMLButtonElement
 
-const createdListContainer = document.getElementById('lista-criada') as HTMLUListElement
-
 const baseUrl = 'https://api.themoviedb.org/3'
 let requestToken: string
 let sessionId: string
