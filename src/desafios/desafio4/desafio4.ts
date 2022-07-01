@@ -238,7 +238,7 @@ const createMovie = (movie: Movie) => {
   const { overview, popularity, release_date } = movie
 
   const elementAsString = `
-      <a href="${homepage}" class="title">${original_title}</a>
+      <a href="${homepage}" target="_blank" class="title">${original_title}</a>
       <p class="language">Language: <span>${original_language}</span></p>
       <p class="overview">Overview: <span>${overview}</span></p>
       <p class="popularity">Popularity: ${popularity}</p>
