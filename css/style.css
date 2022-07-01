@@ -160,6 +160,7 @@ ul[data-js="movies"] {
 .movies-list,
 .created-movies-list {
   flex: 1;
+  padding: 1rem;
 }
 
 #search-container {
