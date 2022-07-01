@@ -67,6 +67,7 @@ interface SessionData {
 
 interface Movie {
   adult: boolean
+  homepage: string
   id: number
   original_language: string
   original_title: string
@@ -233,11 +234,11 @@ const formatDate = (dateAsString: string) => {
 }
 
 const createMovie = (movie: Movie) => {
-  const { adult, original_language, original_title } = movie
+  const { adult, homepage, original_language, original_title } = movie
   const { overview, popularity, release_date } = movie
 
   const elementAsString = `
-      <p class="title">${original_title}</p>
+      <a href="${homepage}" class="title">${original_title}</a>
       <p class="language">Language: <span>${original_language}</span></p>
       <p class="overview">Overview: <span>${overview}</span></p>
       <p class="popularity">Popularity: ${popularity}</p>
