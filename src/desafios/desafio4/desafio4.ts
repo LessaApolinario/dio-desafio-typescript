@@ -75,9 +75,6 @@ interface Movie {
   popularity: number
   release_date: string
   title: string
-  sucess: boolean
-  status_code: number
-  status_message: string
 }
 
 type MoviesResults = {
