@@ -64,7 +64,6 @@ ul > li > p:not(:last-child) {
 }
 
 .container, .movies {
-  height: 50%;
   width: 100%;
 }
 
@@ -75,7 +74,7 @@ ul > li > p:not(:last-child) {
 }
 
 .container {
-  align-items: stretch;
+  align-items: flex-start;
   gap: 2rem;
 
   padding: 2rem 4rem;
@@ -87,13 +86,21 @@ ul > li > p:not(:last-child) {
 
 #login-container {
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+}
+
+#login-container > * {
+  width: 100%;
 }
 
 #search-container {
-  justify-content: stretch;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#search-container > * {
+  width: 100%;
 }
 
 .movies {
