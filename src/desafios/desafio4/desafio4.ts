@@ -315,7 +315,7 @@ addFilmeButton.addEventListener('click', async (event) => {
   try {
     const movie = await adicionarFilme(id)
 
-    if (status_code === 34) {
+    if (typeof movie === 'undefined') {
       li.textContent = 'Este filme não existe!'
       li.classList.add('undefined-movie')
     } else {
