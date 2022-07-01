@@ -33,6 +33,8 @@ button:disabled {
 
 input {
   padding: 0.5rem;
+  border: 0;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
 }
 
 button, input {
@@ -260,40 +262,37 @@ ul[data-js="movies"] {
 }
 
 @media (max-width: 768px) {
-  main#container {
+  .container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
   }
 
-  .container, .movies {
-    height: 100%;
-    flex: 1;
-  }
-
-  .container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
   #login-container, #search-container {
-    flex: 1;   
+    padding: 2rem;
     width: 80%;
   }
 
   .movies {
+    width: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-
-    gap: 0;
   }
 
   .movies-list, .created-movies-list {
-    flex: 1;   
+    padding: 2rem;
     width: 80%;
   }
 
+  .get-list {
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .get-list #get-list {
+    width: 100%;
     flex: 0;
   }
 }
