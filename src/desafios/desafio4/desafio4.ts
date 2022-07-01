@@ -200,9 +200,13 @@ const procurarFilme = async (query: string) => {
   const req = new Request(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`, {
     method: 'GET'
   })
-  const response = await api<MoviesResults>(req)
-  const { results } = response
-  return results
+
+  try {
+    const response = await api<MoviesResults>(req)
+    return response?.results
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const abbreviateMonth = (month: string) => {
