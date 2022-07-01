@@ -296,3 +296,65 @@ ul[data-js="movies"] {
     flex: 0;
   }
 }
+
+@media (max-width: 425px) {
+  .container, .movies {
+    padding: 0;
+    gap: 0;
+  }
+
+  ul#lista,
+  ul[data-js="movies"],
+  ul#lista-criada {
+    width: 100%;
+  }
+
+  ul#lista li,
+  ul[data-js="movies"] li,
+  ul#lista-criada li {
+    overflow-x: auto;
+    overflow-y: auto;
+    white-space: nowrap;
+  }
+
+  .item {
+    overflow-x: auto;
+  }
+
+  #login-container, #search-container {
+    width: 100%;
+  }
+
+  .movies-list, .created-movies-list {
+    width: 100%;
+  }
+
+  .list-inputs {
+    flex-direction: column;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .list-inputs input {
+    width: 100%;
+  }
+
+  .buttons {
+    padding: 0;
+    align-items: initial;
+    width: 100%;
+  }
+
+  .buttons button {
+    margin-right: 1rem;
+    flex: 1;
+  }
+
+  .buttons button:last-of-type {
+    margin-right: 0;
+  }
+
+  .get-list #get-list {
+    width: 100%;
+  }
+}
