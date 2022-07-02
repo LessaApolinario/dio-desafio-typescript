@@ -122,8 +122,7 @@ const criarRequestToken = async () => {
   })
 
   const response = await api<RequestTokenData>(req)
-  const { request_token } = response
-  return request_token
+  return response?.request_token
 }
 
 const logar = async () => {
@@ -146,9 +145,13 @@ const criarSessao = async () => {
   const req = new Request(`${baseUrl}/authentication/session/new?api_key=${apiKey}&request_token=${requestToken}`, {
     method: 'GET'
   })
-  const response = await api<SessionData>(req)
-  const { session_id } = response
-  return session_id
+
+  try {
+    const response = await api<SessionData>(req)
+    return response?.session_id
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 loginButton.addEventListener('click', async (event) => {
