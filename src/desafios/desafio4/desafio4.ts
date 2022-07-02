@@ -342,9 +342,13 @@ const criarLista = async (nomeDaLista: string, descricao: string) => {
     body: formData
   })
 
-  const result = await api<List>(req)
-  console.log(result)
-  return result
+  try {
+    const list = await api<List>(req)
+    console.log(list)
+    return list
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
@@ -366,7 +370,6 @@ const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
   }
 }
 
-// TODO:: refatorar para undefined
 createListButton.addEventListener('click', async (event) => {
   event.preventDefault()
 
@@ -374,9 +377,10 @@ createListButton.addEventListener('click', async (event) => {
   const descricao = listDescriptionInput.value
 
   try {
-    const { sucess, list_id } = await criarLista(nomeDaLista, descricao)
+    const list = await criarLista(nomeDaLista, descricao)
 
-    if (sucess) {
+    if (typeof list !== 'undefined') {
+      const { list_id } = list
       console.log('Lista criada com sucesso, ID: ', list_id)
     }
   } catch (error) {
