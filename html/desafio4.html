@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desafio 4</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script type="module" src="../dist/desafios/desafio4/desafio4.js"></script>
+</head>
+<body>
+  <main class="flex-container" id="container">
+    <div class="container flex-container">
+      <form id="login-container" class="flex-container" action="#">
+          <input
+            type="text"
+            id="login"
+            placeholder="Login"
+            name="username"
+          />
+          <input
+            type="password"
+            id="senha"
+            placeholder="Senha"
+            name="password"
+          />
+          <input
+            type="text"
+            id="api-key"
+            placeholder="Api Key"
+            name="api_key"
+          />
+  
+          <button id="login-button" type="submit" disabled>Login</button>
+      </form>
+  
+      <form action="#" id="search-container" class="flex-container">
+          <input
+            type="text"
+            id="search"
+            placeholder="Escreva..."
+            name="search"
+          />
+          
+          <button id="search-button">Pesquisar Filme</button>
+      </form>
+    </div>
+  
+    <div class="movies flex-container">
+      <div class="movies-list flex-container">
+        <input
+          type="text"
+          id="movie-id"
+          name="movie-id"
+          placeholder="ID do filme"
+        />
+        <button type="button">Adicionar filme</button>
+        <ul data-js="movies"></ul>
+      </div>
+  
+      <div class="created-movies-list flex-container">
+        <div class="flex-container list-inputs">
+          <input
+            type="text"
+            id="nome-da-lista"
+            placeholder="Nome da lista"
+            name="nome-da-lista"
+          />
+          <input
+            type="text"
+            id="descricao"
+            placeholder="Descrição da lista"
+            name="descricao"
+          />
+        </div>
+  
+        <div class="flex-container list-inputs">
+          <input
+            type="text"
+            id="list-id"
+            placeholder="ID da lista..."
+            name="list-id"
+          />
+          <input
+            type="text"
+            id="add-movie-id"
+            placeholder="ID do filme..."
+            name="add-movie-id"
+          />
+        </div>
+  
+        <div class="buttons flex-container">
+          <button type="button" id="create-list">Criar lista</button>
+          <button type="button" id="add-movie-into-list">Adicionar na lista</button>
+        </div>
+  
+        <div class="get-list flex-container">
+          <button type="button" id="get-list">Pegar lista</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
