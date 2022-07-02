@@ -158,9 +158,9 @@ loginButton.addEventListener('click', async (event) => {
   event.preventDefault()
 
   try {
-    requestToken = await criarRequestToken()
+    requestToken = await criarRequestToken() || 'Falha ao criar requestToken!'
     await logar()
-    sessionId = await criarSessao()
+    sessionId = await criarSessao() || 'Falha ao criar sessionId!'
   } catch (error) {
     console.log(error)
   }
