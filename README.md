@@ -10,3 +10,17 @@ Use `yarn watch` para monitorar os arquivos TypeScript e gerar os arquivos JavaS
 ## Notas de uso
 
 No desafio 4 se faz necessaŕio se cadastrar no [The Movie Database (TMDB)](https://www.themoviedb.org/) e gerar a chave da API através das intruções da [documentação](https://developers.themoviedb.org/3/getting-started/introduction).
+
+## Imagens do layout do desafio 4
+
+### Para desktop
+
+![desktop](./img/desktop.png)
+
+### Para tablet
+
+![tablet](./img/tablet.png)
+
+### Para dispositivos móveis
+
+![mobile](./img/mobile.png)
