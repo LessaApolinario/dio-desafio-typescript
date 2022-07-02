@@ -455,7 +455,7 @@ getListButton.addEventListener('click', async (event) => {
 
   try {
     const createdList = await pegarLista()
-    createdList
+    typeof createdList !== 'undefined'
       ? insertCreatedListIntoDOM(createdList)
       : console.log('A lista não existe')
   } catch (error) {
