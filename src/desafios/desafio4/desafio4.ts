@@ -358,10 +358,15 @@ const adicionarFilmeNaLista = async (filmeId: number, listaId: number) => {
     body: formData
   })
 
-  const result = await api<Movie>(req)
-  return result
+  try {
+    const movie = await api<Movie>(req)
+    return movie
+  } catch (error) {
+    console.log(error)
+  }
 }
 
+// TODO:: refatorar para undefined
 createListButton.addEventListener('click', async (event) => {
   event.preventDefault()
 
@@ -385,13 +390,10 @@ addMovieButton.addEventListener('click', async (event) => {
   const listaId = Number(listIdInput.value)
 
   try {
-    const { sucess } = await adicionarFilmeNaLista(filmeId, listaId)
-
-    if (sucess) {
-      console.log('Filme adicionado com sucesso!')
-    } else {
-      console.log('O filme não existe!')
-    }
+    const movie = await adicionarFilmeNaLista(filmeId, listaId)
+    typeof movie === 'undefined'
+      ? console.log('O filme não existe!')
+      : console.log('Filme adicionado com sucesso!')
   } catch (error) {
     console.log(error)
   }
